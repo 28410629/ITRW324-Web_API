@@ -16,14 +16,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.16" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="01 Common\" />
-    <Folder Include="02 Models\" />
     <Folder Include="03 Dtos\" />
     <Folder Include="04 Interfaces\" />
-    <Folder Include="05 Repositories\" />
     <Folder Include="06 Services\" />
     <Folder Include="08 Tests\" />
   </ItemGroup>
