@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WeatherStationApi._03_Dtos;
 
 namespace WeatherStationApi.Controllers
 {
@@ -26,10 +27,14 @@ namespace WeatherStationApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string reading)
+        public void Post([FromBody] ReadingDto reading)
         {
             Console.WriteLine("Received JSON:");
-            Console.WriteLine(reading);
+            Console.WriteLine("Station: " + reading.Station);
+            Console.WriteLine("AirPressure: " + reading.AirPressure);
+            Console.WriteLine("Humidity: " + reading.Humidity);
+            Console.WriteLine("Light: " + reading.Light);
+            Console.WriteLine("Temperature: " + reading.Temperature);
         }
 
         // PUT api/values/5

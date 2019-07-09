@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <Folder Include="01 Common\" />
-    <Folder Include="03 Dtos\" />
     <Folder Include="04 Interfaces\" />
     <Folder Include="06 Services\" />
     <Folder Include="08 Tests\" />
