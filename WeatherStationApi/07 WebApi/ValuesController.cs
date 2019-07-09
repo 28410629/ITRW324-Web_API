@@ -26,8 +26,10 @@ namespace WeatherStationApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] string reading)
         {
+            Console.WriteLine("Received JSON:");
+            Console.WriteLine(reading);
         }
 
         // PUT api/values/5
