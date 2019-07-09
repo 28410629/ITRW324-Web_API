@@ -5,6 +5,10 @@ This can be a possible API for us to use with our project subject next semester.
 * I will teach everything I've learned to you and I think this will get us the fastest up and running.
 
 Web API Details
-------------------
+----------------
 - .Net Core 2.2 
 - Entity Framework Core
+
+Reference Links
+---------------
+* [Publishing an ASP.NET Core website to a cheap Linux VM host](https://www.hanselman.com/blog/PublishingAnASPNETCoreWebsiteToACheapLinuxVMHost.aspx)
