@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeatherStationApi._02_Models
@@ -16,6 +18,8 @@ namespace WeatherStationApi._02_Models
         
         public string Light { get; set; }
 
-        public virtual Station Station { get; set; }
+        public Station Station { get; set; }
+        
+        //public ICollection<Station> Stations { get; set; }
     }
 }

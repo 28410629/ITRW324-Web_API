@@ -6,7 +6,9 @@ namespace WeatherStationApi._05_Repositories
 {
     public class WeatherStationDbContext : DbContext
     {
-        public WeatherStationDbContext() { }
+        public WeatherStationDbContext()
+        {
+        }
 
         public DbSet<Station> Station { get; set; }
 
@@ -18,12 +20,22 @@ namespace WeatherStationApi._05_Repositories
             // optionsBuilder.UseSqlServer("Data Source=COENRAADHUM-PC\\SQLEXPRESS;Initial Catalog=dbEuropcar_DEV;Integrated Security=True;");
             try
             {
-                optionsBuilder.UseMySQL("server=localhost;database=WeatherSystemDB;user=backend;password=Olideadsykes1");
+                optionsBuilder.UseMySQL(
+                    "server=localhost;database=WeatherSystemDB;user=backend;password=Olideadsykes1");
             }
             catch (System.Exception)
             {
                 Console.WriteLine("Error with DB connection string. Check DbContext.");
-            } 
+            }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // One (Reading) to one (Station)
+            modelBuilder.Entity<Reading>()
+                .HasOne(a => a.Station)
+                .WithOne(b => b.Reading)
+                .HasForeignKey<Station>(b => b.Id);
         }
     }
 }
