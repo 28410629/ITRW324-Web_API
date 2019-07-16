@@ -2,8 +2,9 @@
 
 namespace WeatherStationApi._02_Models
 {
-    [Table("Station")]
+    [Table("Stations")]
     public class Station : WeatherStationModel
     {
+        
     }
 }

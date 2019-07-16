@@ -16,7 +16,7 @@ namespace WeatherStationApi._05_Repositories
             // optionsBuilder.UseSqlServer("Data Source=COENRAADHUM-PC\\SQLEXPRESS;Initial Catalog=dbEuropcar_DEV;Integrated Security=True;");
             try
             {
-                optionsBuilder.UseMySQL("server=localhost;database=library;user=user;password=password");
+                optionsBuilder.UseMySQL("server=localhost;database=WeatherSystemDB;user=backend;password=Olideadsykes1");
             }
             catch (System.Exception)
             {
