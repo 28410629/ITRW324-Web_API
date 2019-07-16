@@ -1,9 +1,15 @@
 CREATE TABLE IF NOT EXISTS Readings (
-    Id INT,
+    Id BIGINT AUTO_INCREMENT,
+	StationId INT NOT NULL,
     AirPressure VARCHAR(255) NOT NULL,
     Humidity VARCHAR(255) NOT NULL,
     Light VARCHAR(255) NOT NULL,
-    ReadingDateTime DATETIME NOT NULL,
     Temperature VARCHAR(255) NOT NULL,
+    PRIMARY KEY (Id),
+	FOREIGN KEY (StationId) REFERENCES Station(Id)
+) 
+
+CREATE TABLE IF NOT EXISTS Station (
+    Id BIGINT AUTO_INCREMENT,
     PRIMARY KEY (Id)
 ) 
