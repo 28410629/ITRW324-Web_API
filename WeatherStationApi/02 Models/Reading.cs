@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeatherStationApi._02_Models
@@ -7,7 +6,7 @@ namespace WeatherStationApi._02_Models
     public class Reading : WeatherStationModel
     {
         [ForeignKey("StationId")]
-        public Int32 StationId { get; set; }
+        public int StationId { get; set; }
         
         public string Temperature { get; set; }
         
@@ -16,5 +15,7 @@ namespace WeatherStationApi._02_Models
         public string AirPressure { get; set; }
         
         public string Light { get; set; }
+
+        public virtual Station Station { get; set; }
     }
 }

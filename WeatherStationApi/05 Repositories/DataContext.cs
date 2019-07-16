@@ -10,6 +10,8 @@ namespace WeatherStationApi._05_Repositories
 
         public DbSet<Station> Station { get; set; }
 
+        public DbSet<Reading> Reading { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Example: 
