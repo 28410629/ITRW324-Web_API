@@ -75,11 +75,11 @@ namespace WeatherStationApi._05_Repositories
             
             modelBuilder.Entity<Reading>(entity =>
             {
-                entity.ToTable("STATIONS");
+                entity.ToTable("READINGS");
                 
-                entity.HasKey(e => e.ReadingId);
+                entity.HasKey(e => e.ReadingId).HasName("READINGID");
 
-                entity.HasIndex(e => e.StationId);
+                entity.HasIndex(e => e.StationId).HasName("STATIONID");
                 
                 entity.Property(e => e.ReadingId).HasColumnName("READINGID").IsRequired();
 
@@ -102,7 +102,7 @@ namespace WeatherStationApi._05_Repositories
             
             modelBuilder.Entity<Station>(entity =>
             {
-                entity.ToTable("READINGS");
+                entity.ToTable("STATIONS");
                 
                 entity.HasKey(e => e.StationId);
 
