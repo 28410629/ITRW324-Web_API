@@ -5,7 +5,7 @@ namespace WeatherStationApi._02_Models
 {
     public class Reading
     {
-        public BigInteger ReadingId { get; set; }
+        public int ReadingId { get; set; }
         
         public int StationId { get; set; }
         
