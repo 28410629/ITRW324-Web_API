@@ -2,13 +2,13 @@
 using WeatherStationApi._04_Interfaces.Services;
 using WeatherStationApi._06_Services;
 
-namespace WeatherStationApi._07_WebApi
+namespace WeatherStationApi._07_WebApi.Get
 {
-    [Route("api/fetch/reading")]
+    [Route("api/get/readings")]
     [ApiController]
-    public class FetchReadingController : ControllerBase
+    public class FetchReadingsController : ControllerBase
     {
-        private IFetchReadingService _service = new FetchReadingService();
+        private readonly IFetchReadingsService _service = new FetchReadingsService();
 
         [HttpGet]
         public IActionResult GetReadings()

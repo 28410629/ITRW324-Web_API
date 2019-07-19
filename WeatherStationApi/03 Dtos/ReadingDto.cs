@@ -10,15 +10,15 @@ namespace WeatherStationApi._03_Dtos
 
         public ReadingDto(Reading reading)
         {
-            Station = Convert.ToString(reading.StationId);
+            StationId = Convert.ToString(reading.StationId);
             Temperature = reading.Temperature;
             Humidity = reading.Humidity;
             AirPressure = reading.AirPressure;
-            Light = reading.AmbientLight;
+            AmbientLight = reading.AmbientLight;
         }
 
-        [JsonProperty("Station")]
-        public string Station { get; set; }
+        [JsonProperty("StationId")]
+        public string StationId { get; set; }
 
         [JsonProperty("Temperature")]
         public string Temperature { get; set; }
@@ -29,7 +29,7 @@ namespace WeatherStationApi._03_Dtos
         [JsonProperty("AirPressure")]
         public string AirPressure { get; set; }
 
-        [JsonProperty("Light")]
-        public string Light { get; set; }
+        [JsonProperty("AmbientLight")]
+        public string AmbientLight { get; set; }
     }
 }

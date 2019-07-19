@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace WeatherStationApi._06_Services
 {
-    public class FetchReadingService : IFetchReadingService
+    public class FetchReadingsService : IFetchReadingsService
     {
-        private static DataContextFactory _factory = new DataContextFactory();
-        private readonly IReadingsRepository readingsRepository = new ReadingsRepository(_factory);
+        private static readonly DataContextFactory _factory = new DataContextFactory();
+        private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
 
         public ReadingsDto FetchReadings()
         {
-            var readings =  readingsRepository
+            var readings =  _readingsRepository
                 .FetchAll()
                 .Select(x => new ReadingDto(x));
 

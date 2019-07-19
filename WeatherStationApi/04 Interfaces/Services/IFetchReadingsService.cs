@@ -2,7 +2,7 @@
 
 namespace WeatherStationApi._04_Interfaces.Services
 {
-    public interface IFetchReadingService
+    public interface IFetchReadingsService
     {
         ReadingsDto FetchReadings();
     }
