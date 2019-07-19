@@ -14,7 +14,7 @@ namespace WeatherStationApi._03_Dtos
             Temperature = reading.Temperature;
             Humidity = reading.Humidity;
             AirPressure = reading.AirPressure;
-            Light = reading.Light;
+            Light = reading.AmbientLight;
         }
 
         [JsonProperty("Station")]

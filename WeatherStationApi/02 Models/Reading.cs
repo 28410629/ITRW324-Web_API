@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 namespace WeatherStationApi._02_Models
 {
-    [Table("Readings")]
-    public class Reading : WeatherStationModel
+    public class Reading
     {
-        [ForeignKey("StationId")]
+        public long ReadingId { get; set; }
+        
         public int StationId { get; set; }
+        
+        public DateTime ReadingDateTime { get; set; }
         
         public string Temperature { get; set; }
         
@@ -16,10 +16,10 @@ namespace WeatherStationApi._02_Models
         
         public string AirPressure { get; set; }
         
-        public string Light { get; set; }
-
-        public Station Station { get; set; }
+        public string AmbientLight { get; set; }
         
-        //public ICollection<Station> Stations { get; set; }
+        // Relation
+        
+        public Station Station { get; set; }
     }
 }

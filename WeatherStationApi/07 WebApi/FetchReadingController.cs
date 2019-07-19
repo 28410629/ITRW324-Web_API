@@ -11,9 +11,9 @@ namespace WeatherStationApi._07_WebApi
         private IFetchReadingService _service = new FetchReadingService();
 
         [HttpGet]
-        public IActionResult GetReading(long id)
+        public IActionResult GetReadings()
         {
-            var answer = _service.FetchReading(id);
+            var answer = _service.FetchReadings();
 
             return new JsonResult(answer);
         }

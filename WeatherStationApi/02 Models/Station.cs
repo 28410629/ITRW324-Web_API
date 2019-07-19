@@ -1,14 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 
 namespace WeatherStationApi._02_Models
 {
-    [Table("Stations")]
     public class Station
     {
-        [Key]
-        public int Id { get; set; }
+        public int StationId { get; set; }
         
-        public Reading Reading { get; set; }
+        public int UserId { get; set; }
+        
+        public int LocationId { get; set; }
+        
+        public string NickName { get; set; }
+        
+        // Relation
+        
+        public EndUser EndUser { get; set; }
+        
+        public Location Location { get; set; }
+        
+        public ICollection<Reading> Readings { get; set; }
     }
 }
