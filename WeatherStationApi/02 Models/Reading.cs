@@ -4,7 +4,7 @@ namespace WeatherStationApi._02_Models
 {
     public class Reading
     {
-        public long ReadingId { get; set; }
+        public Int64 ReadingId { get; set; }
         
         public int StationId { get; set; }
         

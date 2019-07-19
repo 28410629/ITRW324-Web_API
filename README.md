@@ -12,3 +12,4 @@ Web API Details
 Reference Links
 ---------------
 * [Publishing an ASP.NET Core website to a cheap Linux VM host](https://www.hanselman.com/blog/PublishingAnASPNETCoreWebsiteToACheapLinuxVMHost.aspx)
+* [Datatypes for EF] (https://www.devart.com/dotconnect/mysql/docs/DataTypeMapping.html)
