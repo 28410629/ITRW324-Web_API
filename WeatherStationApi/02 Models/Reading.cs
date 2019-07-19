@@ -1,10 +1,11 @@
 using System;
+using System.Numerics;
 
 namespace WeatherStationApi._02_Models
 {
     public class Reading
     {
-        public Int64 ReadingId { get; set; }
+        public BigInteger ReadingId { get; set; }
         
         public int StationId { get; set; }
         
