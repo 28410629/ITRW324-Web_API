@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using Microsoft.Extensions.Options;
 using WeatherStationApi._02_Models;
-using Pomelo.EntityFrameworkCore.MySql;
+
 
 namespace WeatherStationApi._05_Repositories
 {
@@ -25,7 +24,10 @@ namespace WeatherStationApi._05_Repositories
             try
             {
                // optionsBuilder.UseMySQL("server=localhost;database=WeatherDB;user=weather;password=Olideadsykes1");
-                
+               if (!optionsBuilder.IsConfigured)
+               {
+                   optionsBuilder.UseMySql("server=localhost;database=WeatherDB;user=weather;password=Olideadsykes1;");
+               }
                
             }
             catch (System.Exception)
