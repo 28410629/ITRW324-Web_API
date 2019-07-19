@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.Extensions.Options;
 using WeatherStationApi._02_Models;
-
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace WeatherStationApi._05_Repositories
 {
@@ -17,8 +18,21 @@ namespace WeatherStationApi._05_Repositories
         
         public DbSet<EndUser> EndUser { get; set; }
 
-        
         public WeatherStationDbContext(DbContextOptions options) : base(options) { }
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            try
+            {
+               // optionsBuilder.UseMySQL("server=localhost;database=WeatherDB;user=weather;password=Olideadsykes1");
+                
+               
+            }
+            catch (System.Exception)
+            {
+                Console.WriteLine("Error with DB connection string. Check DbContext.");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

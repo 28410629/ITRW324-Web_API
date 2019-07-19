@@ -28,11 +28,11 @@ namespace WeatherStationApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContextPool<WeatherStationDbContext>( // replace "YourDbContext" with the class name of your DbContext
-                options => options.UseMySql("Server=localhost;Database=WeatherDB;User=weather;Password=Olideadsykes1;", // replace with your Connection String
+            services.AddDbContextPool<WeatherStationDbContext>( 
+                options => options.UseMySql("Server=localhost;Database=WeatherDB;User=weather;Password=Olideadsykes1;",
                     mySqlOptions =>
                     {
-                        mySqlOptions.ServerVersion(new Version(5, 7, 26), ServerType.MySql); // replace with your Server Version and Type
+                        mySqlOptions.ServerVersion(new Version(5, 7, 26), ServerType.MySql); 
                     }
                 ));
         }
