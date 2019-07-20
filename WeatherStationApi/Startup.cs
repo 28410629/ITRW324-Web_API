@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,8 +6,6 @@ using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using WeatherStationApi._05_Repositories;
 
@@ -43,7 +38,9 @@ namespace WeatherStationApi
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("*").AllowAnyHeader()
+                    builder => builder
+                        .WithOrigins("*","https://coenraadhuman.github.io")
+                        .AllowAnyHeader()
                         .AllowAnyMethod());
             });
         }
@@ -55,7 +52,7 @@ namespace WeatherStationApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors();
             app.UseMvc();
         }
     }
