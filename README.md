@@ -20,3 +20,37 @@ Reference Links
 ---------------
 * [Publishing an ASP.NET Core website to a cheap Linux VM host](https://www.hanselman.com/blog/PublishingAnASPNETCoreWebsiteToACheapLinuxVMHost.aspx)
 * [Datatypes for EF] (https://www.devart.com/dotconnect/mysql/docs/DataTypeMapping.html)
+
+Certificate For API
+-------------------
+
+Generate certificate for API:
+
+See [https://tecadmin.net/install-lets-encrypt-create-ssl-ubuntu/](https://tecadmin.net/install-lets-encrypt-create-ssl-ubuntu/)
+
+```bash
+coen@WeatherStationAPI:~$ sudo certbot-auto certonly --standalone -d weatherstationapi.ddns.net 
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator standalone, Installer None
+Obtaining a new certificate
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/weatherstationapi.ddns.net/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/weatherstationapi.ddns.net/privkey.pem
+   Your cert will expire on 2019-10-25. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot-auto
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot-auto renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+```
+
+Create usable certificate for API:
+
+```bash
+openssl pkcs12 -export -out certificate.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem
+```
