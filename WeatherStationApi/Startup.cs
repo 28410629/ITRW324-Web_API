@@ -39,7 +39,7 @@ namespace WeatherStationApi
             {
                 options.AddPolicy("AllowSpecificOrigin",
                     builder => builder
-                        .WithOrigins("*","https://anchormenstations.tech")
+                        .WithOrigins("*")
                         .AllowAnyHeader()
                         .AllowAnyMethod());
             });
