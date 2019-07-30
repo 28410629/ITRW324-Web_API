@@ -11,59 +11,59 @@ namespace WeatherStationApi._01_Common.Utilities
         private static string message;
         private static string stackTrace;
         private static readonly string username = "itrw324.weatherstationapi@gmail.com";
-        private static readonly string password = @"^H*A9fd#j5\9qC}q>y?m";
+        /*private static readonly string username = "itrw324.weatherstationapi@outlook.com";
+        private static readonly string password = "VUarH4vsNk6DTCzy";
+        private static readonly string host = "smtp-mail.outlook.com"; */
 
         public static void SendError(Exception e)
         {
             message = e.Message;
             source = e.Source;
             stackTrace = e.StackTrace;
-            Thread thread = new Thread(new ThreadStart(runSaveError));
+            Thread thread = new Thread(new ThreadStart(SendError));
             thread.Start();
         }
         
         public static void SendErrorTest()
         {
-            Console.WriteLine("[ OK  ] LogErrorEmail: Sending email test!");
+            Console.WriteLine("[ OK  ] LogErrorEmail: Sending test email.");
             message = "This is a test!";
             source = "This is a test!";
             stackTrace = "This is a test!";
-            Thread thread = new Thread(new ThreadStart(runSaveError));
+            Thread thread = new Thread(new ThreadStart(SendError));
             thread.Start();
         }
 
-        private static void runSaveError()
+        private static void SendError()
         {
+            
             try
             {
-                // Credentials
-                var credentials = new NetworkCredential(username, password);
-                // Mail message
-                var mail = new MailMessage()
+                using (var mailMessage = new MailMessage())
                 {
-                    From = new MailAddress(username),
-                    Subject = "WeatherStationAPI - System Error:  " + DateTime.Today.ToLongDateString(),
-                    Body = DateTime.Now.ToString("h:mm:ss tt") + "\n\n" + message + "\n\n" + source + "\n\n" + message + "\n\n" + stackTrace + "\n\n-------------------------------------------FIN-------------------------------------------"
-                };
-                mail.IsBodyHtml = true;
-                mail.To.Add("coen.human@gmail.com");
-                mail.To.Add("morneventer.mv@gmail.com ");
-                mail.To.Add("eonviljoen.ev@gmail.com ");
-                // Smtp client
-                var client = new SmtpClient()
-                {
-                    Port = 587,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = "smtp.gmail.com",
-                    EnableSsl = true,
-                    Credentials = credentials
-                };
-                client.Send(mail);
+                    using (var client = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        //provide credentials
+                        client.Credentials = new NetworkCredential("itrw324.weatherstationapi@gmail.com", "VUarH4vsNk6DTCzy");
+                        client.EnableSsl = true;
+
+                        // configure the mail message
+                        mailMessage.From = new MailAddress("itrw324.weatherstationapi@gmail.com");
+                        mailMessage.To.Insert(0, new MailAddress("coen.human@gmail.com"));
+                        mailMessage.Subject = "WeatherStationAPI - System Error:  " + DateTime.Today.ToLongDateString();
+                        mailMessage.Body = DateTime.Now.ToString("h:mm:ss tt") + "\n\n" + message + "\n\n" + source +
+                                           "\n\n" + message + "\n\n" + stackTrace +
+                                           "\n\n-------------------------------------------FIN-------------------------------------------";
+
+                        //send email
+                        client.Send(mailMessage);
+                        Console.WriteLine("[ OK  ] LogErrorEmail: Email sent.");
+                    }
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine("[ERROR] LogErrorEmail: " + e.Message);
+                Console.WriteLine("[ ERR ] LogErrorEmail: " + e.Message + "\n\n" + e.StackTrace);
             }
         }
     }
