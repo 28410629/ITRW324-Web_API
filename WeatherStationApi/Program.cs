@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using WeatherStationApi._01_Common.Utilities;
 
 namespace WeatherStationApi
 {
@@ -15,10 +10,17 @@ namespace WeatherStationApi
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args)
-                .UseUrls("http://0.0.0.0:5000", "https://0.0.0.0:5001")
-                .Build()
-                .Run();
+            try
+            {
+                CreateWebHostBuilder(args)
+                    .UseUrls("http://0.0.0.0:5000", "https://0.0.0.0:5001")
+                    .Build()
+                    .Run();
+            }
+            catch (Exception e)
+            {
+                LogErrorEmail.SendError(e);
+            }
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
