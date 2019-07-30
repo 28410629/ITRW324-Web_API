@@ -54,3 +54,11 @@ Create usable certificate for API:
 ```bash
 openssl pkcs12 -export -out certificate.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem
 ```
+
+An important concept to think of in regards to Web APIs
+-------------------------------------------------------
+So in other words, don't do computation on the front-end side since the code is publically available with web technologies.
+The back-end will always serve the data being displayed on the front-end side.
+
+![Capture0730](https://user-images.githubusercontent.com/20205514/62110724-5a913f00-b2af-11e9-913d-67cae731e1e5.PNG)
+
