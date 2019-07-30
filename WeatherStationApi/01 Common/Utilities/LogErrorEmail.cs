@@ -50,6 +50,8 @@ namespace WeatherStationApi._01_Common.Utilities
                         // configure the mail message
                         mailMessage.From = new MailAddress("itrw324.weatherstationapi@gmail.com");
                         mailMessage.To.Insert(0, new MailAddress("coen.human@gmail.com"));
+                        mailMessage.To.Insert(1, new MailAddress("morneventer.mv@gmail.com"));
+                        mailMessage.To.Insert(2, new MailAddress("eonviljoen.ev@gmail.com"));
                         mailMessage.Subject = "WeatherStationAPI - System Error:  " + DateTime.Today.ToLongDateString();
                         mailMessage.Body = DateTime.Now.ToString("h:mm:ss tt") + "\n\n" + message + "\n\n" + source +
                                            "\n\n" + message + "\n\n" + stackTrace +
