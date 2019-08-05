@@ -7,13 +7,13 @@ using System.Linq;
 
 namespace WeatherStationApi._06_Services
 {
-    public class LastDayReadingsService: IFetchReadingsService
+    public class LastDayReadingsService: IFetchLastDayReadingsService
     {
 
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
 
-        public ReadingsDto FetchReadings()
+        public ReadingsDto FetchLastDayReadings()
         {
             var readings =  _readingsRepository
                 .FetchAll()
@@ -26,6 +26,5 @@ namespace WeatherStationApi._06_Services
                 Readings = readings.ToList()
             };
         }
-        
     }
 }
