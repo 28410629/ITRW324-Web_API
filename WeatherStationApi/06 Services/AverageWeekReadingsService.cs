@@ -11,33 +11,35 @@ namespace WeatherStationApi._06_Services
     {
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
+        
+        private static ReadingDto _averageReadings = new ReadingDto();
+        private ReadingsDto _averageReadingsDto = new ReadingsDto();
 
         public ReadingsDto AverageWeekReadings()
         {
-            var readings = _readingsRepository
+            var temperatureReadings = _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7))
-                .Select(x => new ReadingDto(x))
                 .Average(x => Convert.ToDecimal(x.Temperature));
-
-            var test = new ReadingDto();
-            var testy = new ReadingsDto();
-
-            test.Temperature = readings.ToString();
-            test.Humidity = "nice";
-            test.AirPressure = "nice";
-            test.AmbientLight = "nice";
             
+            var humidityReadings = _readingsRepository
+                .FetchAll()
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7))
+                .Average(x => Convert.ToDecimal(x.Humidity));
+            
+            var airPressureReadings = _readingsRepository
+                .FetchAll()
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7))
+                .Average(x => Convert.ToDecimal(x.AirPressure));
+            
+            _averageReadings.Temperature = temperatureReadings.ToString();
+            _averageReadings.Humidity = humidityReadings.ToString();
+            _averageReadings.AirPressure = airPressureReadings.ToString();
+            _averageReadings.AmbientLight = "nice";
+            
+            _averageReadingsDto.Readings.Add(_averageReadings);
 
-            testy.Readings.Add(test);
-
-            return testy;
-
-            /*return new ReadingsDto
-            {
-                Readings = readings.ToList()
-            };*/
-
+            return _averageReadingsDto;
 
         }
 
