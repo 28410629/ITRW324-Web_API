@@ -51,12 +51,72 @@ namespace WeatherStationApi._06_Services
                 MaxReadings = readings.ToList()
             };
         }
-        
+
         public MaxReadingsDto FetchMaxMonthAllStationsReadings()
         {
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-30))
+                .GroupBy(g => g.StationId)
+                .Select(g => new MaxReadingDto(
+                    g.Key.ToString(), 
+                    g.Max(x => x.Temperature), 
+                    g.Max(x => x.Humidity), 
+                    g.Max(x => x.AirPressure), 
+                    g.Max(x => x.AmbientLight))
+                );
+
+            return new MaxReadingsDto()
+            {
+                MaxReadings = readings.ToList()
+            };
+        }
+        
+        public MaxReadingsDto FetchMaxDayAStationReadings(int StationId)
+        {
+            var readings =  _readingsRepository
+                .FetchAll()
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7) && x.StationId == StationId)
+                .GroupBy(g => g.StationId)
+                .Select(g => new MaxReadingDto(
+                    g.Key.ToString(), 
+                    g.Max(x => x.Temperature), 
+                    g.Max(x => x.Humidity), 
+                    g.Max(x => x.AirPressure), 
+                    g.Max(x => x.AmbientLight))
+                );
+
+            return new MaxReadingsDto()
+            {
+                MaxReadings = readings.ToList()
+            };
+        }
+        
+        public MaxReadingsDto FetchMaxWeekAStationReadings(int StationId)
+        {
+            var readings =  _readingsRepository
+                .FetchAll()
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7) && x.StationId == StationId)
+                .GroupBy(g => g.StationId)
+                .Select(g => new MaxReadingDto(
+                    g.Key.ToString(), 
+                    g.Max(x => x.Temperature), 
+                    g.Max(x => x.Humidity), 
+                    g.Max(x => x.AirPressure), 
+                    g.Max(x => x.AmbientLight))
+                );
+
+            return new MaxReadingsDto()
+            {
+                MaxReadings = readings.ToList()
+            };
+        }
+        
+        public MaxReadingsDto FetchMaxMonthAStationReadings(int StationId)
+        {
+            var readings =  _readingsRepository
+                .FetchAll()
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7) && x.StationId == StationId)
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
                     g.Key.ToString(), 
