@@ -4,10 +4,10 @@ namespace WeatherStationApi._04_Interfaces.Services
 {
     public interface IMaxReadingsService
     {
-        ReadingsDto FetchMaxDayAllStationsReadings();
+        MaxReadingsDto FetchMaxDayAllStationsReadings();
         
-        ReadingsDto FetchMaxWeekAllStationsReadings();
+        MaxReadingsDto FetchMaxWeekAllStationsReadings();
         
-        ReadingsDto FetchMaxMonthAllStationsReadings();
+        MaxReadingsDto FetchMaxMonthAllStationsReadings();
     }
 }

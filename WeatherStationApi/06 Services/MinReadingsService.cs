@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using WeatherStationApi._03_Dtos;
 using WeatherStationApi._04_Interfaces.Repositories;
@@ -15,6 +16,7 @@ namespace WeatherStationApi._06_Services
         {
             var readings =  _readingsRepository
                 .FetchAll()
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1))
                 .Select(x => new ReadingDto(x));
 
             return new ReadingsDto
@@ -27,6 +29,7 @@ namespace WeatherStationApi._06_Services
         {
             var readings =  _readingsRepository
                 .FetchAll()
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1))
                 .Select(x => new ReadingDto(x));
 
             return new ReadingsDto
@@ -39,6 +42,7 @@ namespace WeatherStationApi._06_Services
         {
             var readings =  _readingsRepository
                 .FetchAll()
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1))
                 .Select(x => new ReadingDto(x));
 
             return new ReadingsDto

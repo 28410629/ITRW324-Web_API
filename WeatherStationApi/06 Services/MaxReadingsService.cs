@@ -12,42 +12,63 @@ namespace WeatherStationApi._06_Services
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
 
-        public ReadingsDto FetchMaxDayAllStationsReadings()
+        public MaxReadingsDto FetchMaxDayAllStationsReadings()
         {
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1))
-                .Select(x => new ReadingDto(x));
+                .GroupBy(g => g.StationId)
+                .Select(g => new MaxReadingDto(
+                    g.Key.ToString(), 
+                    g.Max(x => x.Temperature), 
+                    g.Max(x => x.Humidity), 
+                    g.Max(x => x.AirPressure), 
+                    g.Max(x => x.AmbientLight))
+                );
 
-            return new ReadingsDto
+            return new MaxReadingsDto()
             {
-                Readings = readings.ToList()
+                MaxReadings = readings.ToList()
             };
         }
         
-        public ReadingsDto FetchMaxWeekAllStationsReadings()
+        public MaxReadingsDto FetchMaxWeekAllStationsReadings()
         {
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7))
-                .Select(x => new ReadingDto(x));
+                .GroupBy(g => g.StationId)
+                .Select(g => new MaxReadingDto(
+                    g.Key.ToString(), 
+                    g.Max(x => x.Temperature), 
+                    g.Max(x => x.Humidity), 
+                    g.Max(x => x.AirPressure), 
+                    g.Max(x => x.AmbientLight))
+                );
 
-            return new ReadingsDto
+            return new MaxReadingsDto()
             {
-                Readings = readings.ToList()
+                MaxReadings = readings.ToList()
             };
         }
         
-        public ReadingsDto FetchMaxMonthAllStationsReadings()
+        public MaxReadingsDto FetchMaxMonthAllStationsReadings()
         {
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-30))
-                .Select(x => new ReadingDto(x));
+                .GroupBy(g => g.StationId)
+                .Select(g => new MaxReadingDto(
+                    g.Key.ToString(), 
+                    g.Max(x => x.Temperature), 
+                    g.Max(x => x.Humidity), 
+                    g.Max(x => x.AirPressure), 
+                    g.Max(x => x.AmbientLight))
+                );
 
-            return new ReadingsDto
+            return new MaxReadingsDto()
             {
-                Readings = readings.ToList()
+                MaxReadings = readings.ToList()
             };
         }
     }
