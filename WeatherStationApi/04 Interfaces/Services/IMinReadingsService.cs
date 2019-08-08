@@ -4,10 +4,16 @@ namespace WeatherStationApi._04_Interfaces.Services
 {
     public interface IMinReadingsService
     {
-        ReadingsDto FetchMinDayAllStationsReadings();
+        MinReadingsDto FetchMinDayAllStationsReadings();
         
-        ReadingsDto FetchMinWeekAllStationsReadings();
+        MinReadingsDto FetchMinWeekAllStationsReadings();
         
-        ReadingsDto FetchMinMonthAllStationsReadings();
+        MinReadingsDto FetchMinMonthAllStationsReadings();
+
+        MinReadingsDto FetchMinDayAStationReadings(int StationId);
+
+        MinReadingsDto FetchMinWeekAStationReadings(int StationId);
+
+        MinReadingsDto FetchMinMonthAStationReadings(int StationId);
     }
 }

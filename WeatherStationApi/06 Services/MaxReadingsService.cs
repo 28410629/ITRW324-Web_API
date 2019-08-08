@@ -76,7 +76,7 @@ namespace WeatherStationApi._06_Services
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7) && x.StationId == StationId)
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == StationId)
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
                     g.Key.ToString(), 
@@ -116,7 +116,7 @@ namespace WeatherStationApi._06_Services
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7) && x.StationId == StationId)
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-30) && x.StationId == StationId)
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
                     g.Key.ToString(), 
