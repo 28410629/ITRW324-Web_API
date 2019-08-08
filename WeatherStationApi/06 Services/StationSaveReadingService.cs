@@ -7,7 +7,7 @@ using WeatherStationApi._05_Repositories;
 
 namespace WeatherStationApi._06_Services
 {
-    public class SaveReadingService : ISaveReadingService
+    public class StationSaveReadingService : IStationSaveReadingService
     {
         private static DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
