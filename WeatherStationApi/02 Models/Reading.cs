@@ -11,13 +11,13 @@ namespace WeatherStationApi._02_Models
         
         public DateTime ReadingDateTime { get; set; }
         
-        public string Temperature { get; set; }
+        public double Temperature { get; set; }
         
-        public string Humidity { get; set; }
+        public double Humidity { get; set; }
         
-        public string AirPressure { get; set; }
+        public double AirPressure { get; set; }
         
-        public string AmbientLight { get; set; }
+        public double AmbientLight { get; set; }
         
         // Relation
         

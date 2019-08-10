@@ -52,8 +52,6 @@ namespace WeatherStationApi._01_Common.Utilities
                         mailMessage.Subject = "WeatherStationAPI - System Error:  " + DateTime.Today.ToLongDateString();
                         mailMessage.Body = DateTime.Now.ToString("h:mm:ss tt") + 
                                            "\n\n" +
-                                           _message +
-                                           "\n\n" +
                                            _source +
                                            "\n\n" +
                                            _message +

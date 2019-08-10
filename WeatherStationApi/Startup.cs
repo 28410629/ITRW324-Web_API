@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using WeatherStationApi._01_Common.Utilities;
 using WeatherStationApi._05_Repositories;
 
 namespace WeatherStationApi

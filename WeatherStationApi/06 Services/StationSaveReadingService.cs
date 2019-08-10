@@ -7,7 +7,7 @@ using WeatherStationApi._05_Repositories;
 
 namespace WeatherStationApi._06_Services
 {
-    public class SaveReadingService : ISaveReadingService
+    public class StationSaveReadingService : IStationSaveReadingService
     {
         private static DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
@@ -17,10 +17,10 @@ namespace WeatherStationApi._06_Services
             _readingsRepository.Add(new Reading()
             {
                 StationId = Convert.ToInt32(reading.StationId),
-                Temperature = reading.Temperature,
-                Humidity = reading.Humidity,
-                AmbientLight = reading.AmbientLight,
-                AirPressure = reading.AirPressure
+                Temperature = Convert.ToDouble(reading.Temperature),
+                Humidity = Convert.ToDouble(reading.Humidity),
+                AmbientLight = Convert.ToDouble(reading.AmbientLight),
+                AirPressure = Convert.ToDouble(reading.AirPressure)
             });
             _readingsRepository.Save();
         }

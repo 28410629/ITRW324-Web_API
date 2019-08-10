@@ -8,12 +8,12 @@ namespace WeatherStationApi._07_WebApi.Get
     [ApiController]
     public class LastDayReadingsController : ControllerBase
     {
-        private readonly IFetchReadingsService _service = new LastDayReadingsService();
+        private readonly IFetchLastDayReadingsService _service = new LastDayReadingsService();
 
         [HttpGet]
         public IActionResult GetReadings()
         {
-            var answer = _service.FetchReadings();
+            var answer = _service.FetchLastDayReadings();
 
             return new JsonResult(answer);
         }

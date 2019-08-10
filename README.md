@@ -8,6 +8,11 @@ Web API Details
 ----------------
 - .Net Core 2.2 
 - Entity Framework Core
+- Database:
+```bash
+coen@WeatherStationAPI:~$ mysql --version
+mysql  Ver 14.14 Distrib 5.7.27, for Linux (x86_64) using  EditLine wrapper
+```
 
 WeatherUnderground Details
 --------------------------
