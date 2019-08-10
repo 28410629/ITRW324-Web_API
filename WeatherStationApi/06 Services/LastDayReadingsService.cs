@@ -26,5 +26,21 @@ namespace WeatherStationApi._06_Services
                 Readings = readings.ToList()
             };
         }
+        
+        public ReadingsDto FetchLastDayReadingsByStation(int StationId)
+        {
+            var readings =  _readingsRepository
+                .FetchAll()
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId==StationId)
+                .Select(x => new ReadingDto(x));
+
+            
+            return new ReadingsDto
+            {
+                Readings = readings.ToList()
+            };
+        }
+        
+        
     }
 }
