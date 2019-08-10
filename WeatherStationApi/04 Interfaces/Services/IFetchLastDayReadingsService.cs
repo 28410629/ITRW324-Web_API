@@ -4,6 +4,7 @@ namespace WeatherStationApi._04_Interfaces.Services
 {
     public interface IFetchLastDayReadingsService
         {
-            ReadingsDto FetchLastDayReadings();
+            LastDaysDto FetchLastDayReadings();
+            LastDaysDto FetchLastDayReadingsByStation(int StationId);
         }
 }

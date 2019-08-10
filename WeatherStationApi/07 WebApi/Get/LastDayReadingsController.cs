@@ -10,10 +10,20 @@ namespace WeatherStationApi._07_WebApi.Get
     {
         private readonly IFetchLastDayReadingsService _service = new LastDayReadingsService();
 
+        [Route("all")]
         [HttpGet]
         public IActionResult GetReadings()
         {
             var answer = _service.FetchLastDayReadings();
+
+            return new JsonResult(answer);
+        }
+        
+        [Route("station")]
+        [HttpGet]
+        public IActionResult GetReadings(int StationId)
+        {
+            var answer = _service.FetchLastDayReadingsByStation(StationId);
 
             return new JsonResult(answer);
         }
