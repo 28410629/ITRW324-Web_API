@@ -4,13 +4,14 @@ using WeatherStationApi._06_Services;
 
 namespace WeatherStationApi._07_WebApi.Get
 {
-    [Route("api/get/Minreadings")]
+    [Route("api/get/minreadings")]
     [ApiController]
     public class MinReadingsController : ControllerBase
     {
         private readonly IMinReadingsService _service = new MinReadingsService();
 
-        [Route("day")]
+        // /api/get/minreadings/all/day
+        [Route("all/day")]
         [HttpGet]
         public IActionResult FetchMinDayAllStationsReadings()
         {
@@ -19,7 +20,8 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        [Route("week")]
+        // /api/get/minreadings/all/week
+        [Route("all/week")]
         [HttpGet]
         public IActionResult FetchMinWeekAllStationsReadings()
         {
@@ -28,7 +30,8 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        [Route("month")]
+        // /api/get/minreadings/all/month
+        [Route("all/month")]
         [HttpGet]
         public IActionResult FetchMinMonthAllStationsReadings()
         {
@@ -37,7 +40,8 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        [Route("day/{StationId:int}")]
+        // /api/get/minreadings/station/day?StationId=
+        [Route("station/day")]
         [HttpGet]
         public IActionResult FetchMinDayAStationReadings(int StationId)
         {
@@ -46,7 +50,8 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        [Route("week/{StationId:int}")]
+        // /api/get/minreadings/station/week?StationId=
+        [Route("station/week")]
         [HttpGet]
         public IActionResult FetchMinWeekAStationReadings(int StationId)
         {
@@ -54,8 +59,9 @@ namespace WeatherStationApi._07_WebApi.Get
 
             return new JsonResult(answer);
         }
-
-        [Route("month/{StationId:int}")]
+        
+        // /api/get/minreadings/station/month?StationId=
+        [Route("station/month/")]
         [HttpGet]
         public IActionResult FetchMinMonthAStationReadings(int StationId)
         {

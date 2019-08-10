@@ -19,12 +19,12 @@ namespace WeatherStationApi._06_Services
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1))
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
-                    g.Key.ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
-                ));
+                    g.Key, 
+                    g.Max(x => x.Temperature).ToString(), 
+                    g.Max(x => x.Humidity).ToString(), 
+                    g.Max(x => x.AirPressure).ToString(), 
+                    g.Max(x => x.AmbientLight).ToString())
+                );
 
             return new MaxReadingsDto()
             {
@@ -39,12 +39,13 @@ namespace WeatherStationApi._06_Services
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7))
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
-                    g.Key.ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
-                ));
+                    g.Key, 
+                    g.Max(x => x.Temperature).ToString(), 
+                    g.Max(x => x.Humidity).ToString(), 
+                    g.Max(x => x.AirPressure).ToString(), 
+                    g.Max(x => x.AmbientLight).ToString())
+                );
+
 
             return new MaxReadingsDto()
             {
@@ -59,12 +60,13 @@ namespace WeatherStationApi._06_Services
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-30))
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
-                    g.Key.ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
-                ));
+                    g.Key, 
+                    g.Max(x => x.Temperature).ToString(), 
+                    g.Max(x => x.Humidity).ToString(), 
+                    g.Max(x => x.AirPressure).ToString(), 
+                    g.Max(x => x.AmbientLight).ToString())
+                );
+
 
             return new MaxReadingsDto()
             {
@@ -79,12 +81,13 @@ namespace WeatherStationApi._06_Services
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == StationId)
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
-                    g.Key.ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
-                ));
+                    g.Key, 
+                    g.Max(x => x.Temperature).ToString(), 
+                    g.Max(x => x.Humidity).ToString(), 
+                    g.Max(x => x.AirPressure).ToString(), 
+                    g.Max(x => x.AmbientLight).ToString())
+                );
+
 
             return new MaxReadingsDto()
             {
@@ -99,12 +102,13 @@ namespace WeatherStationApi._06_Services
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7) && x.StationId == StationId)
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
-                    g.Key.ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
-                ));
+                    g.Key, 
+                    g.Max(x => x.Temperature).ToString(), 
+                    g.Max(x => x.Humidity).ToString(), 
+                    g.Max(x => x.AirPressure).ToString(), 
+                    g.Max(x => x.AmbientLight).ToString())
+                );
+
 
             return new MaxReadingsDto()
             {
@@ -119,12 +123,13 @@ namespace WeatherStationApi._06_Services
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-30) && x.StationId == StationId)
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
-                    g.Key.ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
-                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
-                ));
+                    g.Key, 
+                    g.Max(x => x.Temperature).ToString(), 
+                    g.Max(x => x.Humidity).ToString(), 
+                    g.Max(x => x.AirPressure).ToString(), 
+                    g.Max(x => x.AmbientLight).ToString())
+                );
+
 
             return new MaxReadingsDto()
             {
