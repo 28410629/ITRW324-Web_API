@@ -13,31 +13,31 @@ namespace WeatherStationApi._06_Services
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
 
-        public ReadingsDto FetchLastDayReadings()
+        public LastDaysDto FetchLastDayReadings()
         {
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1))
-                .Select(x => new ReadingDto(x));
+                .Select(x => new LastDayDto(x.StationId, x.Temperature.ToString(), x.Humidity.ToString(), x.AirPressure.ToString(), x.AmbientLight.ToString() ));
 
             
-            return new ReadingsDto
+            return new LastDaysDto
             {
-                Readings = readings.ToList()
+                LastDayReadings = readings.ToList()
             };
         }
         
-        public ReadingsDto FetchLastDayReadingsByStation(int StationId)
+        public LastDaysDto FetchLastDayReadingsByStation(int StationId)
         {
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId==StationId)
-                .Select(x => new ReadingDto(x));
+                .Select(x => new LastDayDto(x.StationId, x.Temperature.ToString(), x.Humidity.ToString(), x.AirPressure.ToString(), x.AmbientLight.ToString() ));
 
             
-            return new ReadingsDto
+            return new LastDaysDto
             {
-                Readings = readings.ToList()
+                LastDayReadings = readings.ToList()
             };
         }
         
