@@ -20,11 +20,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
                     g.Key.ToString(), 
-                    g.Max(x => x.Temperature), 
-                    g.Max(x => x.Humidity), 
-                    g.Max(x => x.AirPressure), 
-                    g.Max(x => x.AmbientLight))
-                );
+                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MaxReadingsDto()
             {
@@ -40,11 +40,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
                     g.Key.ToString(), 
-                    g.Max(x => x.Temperature), 
-                    g.Max(x => x.Humidity), 
-                    g.Max(x => x.AirPressure), 
-                    g.Max(x => x.AmbientLight))
-                );
+                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MaxReadingsDto()
             {
@@ -60,11 +60,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
                     g.Key.ToString(), 
-                    g.Max(x => x.Temperature), 
-                    g.Max(x => x.Humidity), 
-                    g.Max(x => x.AirPressure), 
-                    g.Max(x => x.AmbientLight))
-                );
+                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MaxReadingsDto()
             {
@@ -80,11 +80,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
                     g.Key.ToString(), 
-                    g.Max(x => x.Temperature), 
-                    g.Max(x => x.Humidity), 
-                    g.Max(x => x.AirPressure), 
-                    g.Max(x => x.AmbientLight))
-                );
+                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MaxReadingsDto()
             {
@@ -100,11 +100,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
                     g.Key.ToString(), 
-                    g.Max(x => x.Temperature), 
-                    g.Max(x => x.Humidity), 
-                    g.Max(x => x.AirPressure), 
-                    g.Max(x => x.AmbientLight))
-                );
+                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MaxReadingsDto()
             {
@@ -120,11 +120,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
                     g.Key.ToString(), 
-                    g.Max(x => x.Temperature), 
-                    g.Max(x => x.Humidity), 
-                    g.Max(x => x.AirPressure), 
-                    g.Max(x => x.AmbientLight))
-                );
+                    g.Max(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Max(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MaxReadingsDto()
             {

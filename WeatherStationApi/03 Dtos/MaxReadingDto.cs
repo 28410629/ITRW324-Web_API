@@ -8,7 +8,7 @@ namespace WeatherStationApi._03_Dtos
 
         public MaxReadingDto(string StationId, string MaxTemperature, string MaxHumidity, string MaxAirPressure, string MaxAmbientLight)
         {
-            this.StationId = Convert.ToString(StationId);
+            this.StationId = StationId;
             this.MaxTemperature = MaxTemperature;
             this.MaxHumidity = MaxHumidity;
             this.MaxAirPressure = MaxAirPressure;

@@ -20,11 +20,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MinReadingDto(
                     g.Key.ToString(), 
-                    g.Min(x => x.Temperature), 
-                    g.Min(x => x.Humidity), 
-                    g.Min(x => x.AirPressure), 
-                    g.Min(x => x.AmbientLight))
-                );
+                    g.Min(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MinReadingsDto()
             {
@@ -40,11 +40,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MinReadingDto(
                     g.Key.ToString(), 
-                    g.Min(x => x.Temperature), 
-                    g.Min(x => x.Humidity), 
-                    g.Min(x => x.AirPressure), 
-                    g.Min(x => x.AmbientLight))
-                );
+                    g.Min(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MinReadingsDto()
             {
@@ -60,11 +60,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MinReadingDto(
                     g.Key.ToString(), 
-                    g.Min(x => x.Temperature), 
-                    g.Min(x => x.Humidity), 
-                    g.Min(x => x.AirPressure), 
-                    g.Min(x => x.AmbientLight))
-                );
+                    g.Min(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MinReadingsDto()
             {
@@ -80,11 +80,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MinReadingDto(
                     g.Key.ToString(), 
-                    g.Min(x => x.Temperature), 
-                    g.Min(x => x.Humidity), 
-                    g.Min(x => x.AirPressure), 
-                    g.Min(x => x.AmbientLight))
-                );
+                    g.Min(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MinReadingsDto()
             {
@@ -100,11 +100,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MinReadingDto(
                     g.Key.ToString(), 
-                    g.Min(x => x.Temperature), 
-                    g.Min(x => x.Humidity), 
-                    g.Min(x => x.AirPressure), 
-                    g.Min(x => x.AmbientLight))
-                );
+                    g.Min(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MinReadingsDto()
             {
@@ -120,11 +120,11 @@ namespace WeatherStationApi._06_Services
                 .GroupBy(g => g.StationId)
                 .Select(g => new MinReadingDto(
                     g.Key.ToString(), 
-                    g.Min(x => x.Temperature), 
-                    g.Min(x => x.Humidity), 
-                    g.Min(x => x.AirPressure), 
-                    g.Min(x => x.AmbientLight))
-                );
+                    g.Min(x => Convert.ToDecimal(x.Temperature)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.Humidity)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AirPressure)).ToString(), 
+                    g.Min(x => Convert.ToDecimal(x.AmbientLight)).ToString()
+                ));
 
             return new MinReadingsDto()
             {

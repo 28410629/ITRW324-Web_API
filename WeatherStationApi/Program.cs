@@ -13,7 +13,6 @@ namespace WeatherStationApi
             try
             {
                 CreateWebHostBuilder(args)
-                    .UseUrls("http://0.0.0.0:5000", "https://0.0.0.0:5001")
                     .Build()
                     .Run();
             }
@@ -28,8 +27,8 @@ namespace WeatherStationApi
                 .UseStartup<Startup>()
                 .ConfigureKestrel((context, options) =>
                 {
-                    options.Listen(IPAddress.Any, 5000);
-                    options.Listen(IPAddress.Any, 5001, listenOptions =>
+                    options.Listen(IPAddress.Any, 8000);
+                    options.Listen(IPAddress.Any, 8001, listenOptions =>
                     {
                         listenOptions.UseHttps("certificate.pfx","Olideadsykes1");
                     });
