@@ -6,16 +6,16 @@ namespace WeatherStationApi._03_Dtos
     {
         public MinReadingDto() { }
 
-        public MinReadingDto(string StationId, string MinTemperature, string MinHumidity, string MinAirPressure, string MinAmbientLight)
+        public MinReadingDto(int StationId, string MinTemperature, string MinHumidity, string MinAirPressure, string MinAmbientLight)
         {
-            this.StationId = Convert.ToString(StationId);
+            this.StationId = StationId;
             this.MinTemperature = MinTemperature;
             this.MinHumidity = MinHumidity;
             this.MinAirPressure = MinAirPressure;
             this.MinAmbientLight = MinAmbientLight;
         }
         
-        public string StationId { get; set; }
+        public int StationId { get; set; }
         
         public string MinTemperature { get; set; }
         
