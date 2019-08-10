@@ -10,7 +10,8 @@ namespace WeatherStationApi._07_WebApi.Get
     {
         private readonly IMaxReadingsService _service = new MaxReadingsService();
 
-        [Route("day")]
+        // /api/get/maxreadings/all/day
+        [Route("all/day")]
         [HttpGet]
         public IActionResult FetchMaxDayAllStationsReadings()
         {
@@ -19,7 +20,8 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        [Route("week")]
+        // /api/get/maxreadings/all/week
+        [Route("all/week")]
         [HttpGet]
         public IActionResult FetchMaxWeekAllStationsReadings()
         {
@@ -28,7 +30,8 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        [Route("month")]
+        // /api/get/maxreadings/all/month
+        [Route("all/month")]
         [HttpGet]
         public IActionResult FetchMaxMonthAllStationsReadings()
         {
@@ -37,7 +40,8 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        [Route("day/{StationId:int}")]
+        // /api/get/maxreadings/station/day?StationId=
+        [Route("station/day")]
         [HttpGet]
         public IActionResult FetchMaxDayAStationReadings(int StationId)
         {
@@ -46,7 +50,8 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        [Route("week/{StationId:int}")]
+        // /api/get/maxreadings/station/week?StationId=
+        [Route("station/week")]
         [HttpGet]
         public IActionResult FetchMaxWeekAStationReadings(int StationId)
         {
@@ -55,7 +60,8 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
 
-        [Route("month/{StationId:int}")]
+        // /api/get/maxreadings/station/month?StationId=
+        [Route("station/month")]
         [HttpGet]
         public IActionResult FetchMaxMonthAStationReadings(int StationId)
         {
