@@ -6,7 +6,7 @@ namespace WeatherStationApi._03_Dtos
     {
         public MaxReadingDto() { }
 
-        public MaxReadingDto(string StationId, string MaxTemperature, string MaxHumidity, string MaxAirPressure, string MaxAmbientLight)
+        public MaxReadingDto(int StationId, string MaxTemperature, string MaxHumidity, string MaxAirPressure, string MaxAmbientLight)
         {
             this.StationId = StationId;
             this.MaxTemperature = MaxTemperature;
@@ -15,7 +15,7 @@ namespace WeatherStationApi._03_Dtos
             this.MaxAmbientLight = MaxAmbientLight;
         }
         
-        public string StationId { get; set; }
+        public int StationId { get; set; }
         
         public string MaxTemperature { get; set; }
         
