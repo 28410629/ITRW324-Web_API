@@ -32,9 +32,9 @@ namespace WeatherStationApi._06_Services
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7))
                 .Average(x => Convert.ToDecimal(x.AirPressure));
             
-            _averageReadings.Temperature = temperatureReadings.ToString();
-            _averageReadings.Humidity = humidityReadings.ToString();
-            _averageReadings.AirPressure = airPressureReadings.ToString();
+            //_averageReadings.Temperature = temperatureReadings.ToString();
+            //_averageReadings.Humidity = humidityReadings.ToString();
+            //_averageReadings.AirPressure = airPressureReadings.ToString();
             _averageReadings.AmbientLight = "nice";
             
             _averageReadingsDto.Readings.Add(_averageReadings);

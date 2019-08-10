@@ -11,10 +11,10 @@ namespace WeatherStationApi._03_Dtos
         public ReadingDto(Reading reading)
         {
             StationId = Convert.ToString(reading.StationId);
-            Temperature = reading.Temperature;
-            Humidity = reading.Humidity;
-            AirPressure = reading.AirPressure;
-            AmbientLight = reading.AmbientLight;
+            Temperature = reading.Temperature.ToString();
+            Humidity = reading.Humidity.ToString();
+            AirPressure = reading.AirPressure.ToString();
+            AmbientLight = reading.AmbientLight.ToString();
         }
 
         [JsonProperty("StationId")]

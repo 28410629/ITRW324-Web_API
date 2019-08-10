@@ -17,10 +17,10 @@ namespace WeatherStationApi._06_Services
             _readingsRepository.Add(new Reading()
             {
                 StationId = Convert.ToInt32(reading.StationId),
-                Temperature = reading.Temperature,
-                Humidity = reading.Humidity,
-                AmbientLight = reading.AmbientLight,
-                AirPressure = reading.AirPressure
+                Temperature = Convert.ToDouble(reading.Temperature),
+                Humidity = Convert.ToDouble(reading.Humidity),
+                AmbientLight = Convert.ToDouble(reading.AmbientLight),
+                AirPressure = Convert.ToDouble(reading.AirPressure)
             });
             _readingsRepository.Save();
         }
