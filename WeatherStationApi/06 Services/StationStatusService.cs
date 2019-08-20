@@ -20,7 +20,7 @@ namespace WeatherStationApi._06_Services
 
             var avg_Readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1/24) && x.StationId == StationId)
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddHours(-1) && x.StationId == StationId)
                 .GroupBy(g => g.StationId)
                 .Select(g => new AverageReadingDto(
                     g.Key, 
@@ -29,16 +29,13 @@ namespace WeatherStationApi._06_Services
                     g.Average(x => x.AirPressure).ToString(), 
                     g.Average(x => x.AmbientLight).ToString())
                 );
-            
-            var avgTemp = new AverageReadingsDto()
-            {
-                AverageReadings = avg_Readings.ToList()
-            };
-            
 
+
+            var AverageReadings = avg_Readings.ToList();
+                
             try
             {
-                newDto.AverageTemp = avgTemp.AverageReadings[0].AverageTemperature;
+                newDto.AverageTemp = AverageReadings.First().AverageTemperature;
             }
             catch (Exception e)
             {
@@ -47,7 +44,7 @@ namespace WeatherStationApi._06_Services
             
             try
             {
-                newDto.Humidity = avgTemp.AverageReadings[0].AverageHumidity;
+                newDto.Humidity = AverageReadings.First().AverageHumidity;
             }
             catch (Exception e)
             {
@@ -56,7 +53,7 @@ namespace WeatherStationApi._06_Services
             
             try
             {
-                newDto.AmbientLight = avgTemp.AverageReadings[0].AverageAmbientLight;
+                newDto.AmbientLight = AverageReadings.First().AverageAmbientLight;
             }
             catch (Exception e)
             {
@@ -77,14 +74,12 @@ namespace WeatherStationApi._06_Services
                 );
 
 
-            var maxTemps = new MaxReadingsDto()
-            {
-                MaxReadings = max_readings.ToList()
-            };
-            
+
+            var MaxReadings = max_readings.ToList();
+
             try
             {
-                newDto.MaxTemp = maxTemps.MaxReadings[0].MaxTemperature;
+                newDto.MaxTemp = MaxReadings.First().MaxTemperature;
             }
             catch (Exception e)
             {
@@ -103,14 +98,12 @@ namespace WeatherStationApi._06_Services
                     g.Min(x => x.AmbientLight).ToString())
                 );
 
-            var minTemp = new MinReadingsDto()
-            {
-                MinReadings = min_readings.ToList()
-            };
 
-            try
+            var MinReadings = min_readings.ToList();
+
+                try
             {
-                newDto.MinTemp = minTemp.MinReadings[0].MinTemperature;
+                newDto.MinTemp = MinReadings.First().MinTemperature;
             }
             catch (Exception e)
             {
