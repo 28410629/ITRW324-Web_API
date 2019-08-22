@@ -27,8 +27,8 @@ namespace WeatherStationApi
                 .UseStartup<Startup>()
                 .ConfigureKestrel((context, options) =>
                 {
-                    options.Listen(IPAddress.Any, 5000);
-                    options.Listen(IPAddress.Any, 5001, listenOptions =>
+                    options.Listen(IPAddress.Any, 8000);
+                    options.Listen(IPAddress.Any, 8001, listenOptions =>
                     {
                         listenOptions.UseHttps("certificate.pfx","Olideadsykes1");
                     });

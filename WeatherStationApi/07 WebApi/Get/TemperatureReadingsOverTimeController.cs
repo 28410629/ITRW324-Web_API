@@ -12,7 +12,7 @@ namespace WeatherStationApi._07_WebApi.Get
         
         [Route("station/day")]
         [HttpGet]
-        public IActionResult FetchMaxDayAStationReadings(int StationId)
+        public IActionResult FetchStationDayTemperatureReadingsOverTime(int StationId)
         {
             var answer = _service.FetchStationDayTemperatureReadingsOverTime(StationId);
 
@@ -22,7 +22,7 @@ namespace WeatherStationApi._07_WebApi.Get
         // /api/get/temperaturereadingsovertime/station/week?StationId=
         [Route("station/week")]
         [HttpGet]
-        public IActionResult FetchMaxWeekAStationReadings(int StationId)
+        public IActionResult FetchStationWeekTemperatureReadingsOverTime(int StationId)
         {
             var answer = _service.FetchStationWeekTemperatureReadingsOverTime(StationId);
 
@@ -32,7 +32,7 @@ namespace WeatherStationApi._07_WebApi.Get
         // /api/get/temperaturereadingsovertime/station/month?StationId=
         [Route("station/month")]
         [HttpGet]
-        public IActionResult FetchMaxMonthAStationReadings(int StationId)
+        public IActionResult FetchStationMonthTemperatureReadingsOverTime(int StationId)
         {
             var answer = _service.FetchStationMonthTemperatureReadingsOverTime(StationId);
 
