@@ -26,20 +26,6 @@ namespace WeatherStationApi._06_Services
             };
         }
 
-        /*public TemperatureReadingsOverTimeDto FetchStationDayTemperatureReadingsOverTime(int stationID)
-        {
-            var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == stationID)
-                .GroupBy(x => x.StationId)
-                .Select(x => new TemperatureReadingOverTimeDto(x.StationId, x,Temperature.ToString(), x.))
-        }*/
-        
-        /*public TemperatureReadingOverTimeDto FetchStationDayTemperatureReadingsOverTime(int StationId)
-        {
-            throw new NotImplementedException();
-        }*/
-
         public TemperatureReadingsOverTimeDto FetchStationWeekTemperatureReadingsOverTime(int StationId)
         {
             var readings =  _readingsRepository
