@@ -4,10 +4,10 @@ namespace WeatherStationApi._04_Interfaces.Services
 {
     public interface ITemperatureReadingOverTimeService
     {
-        AverageReadingsDto FetchAverageDayAllStationsReadings();
+        TemperatureReadingOverTimeDto FetchAverageDayAllStationsReadings(int StationId);
         
-        AverageReadingsDto FetchAverageWeekAllStationsReadings();
+        TemperatureReadingOverTimeDto FetchAverageWeekAllStationsReadings(int StationId);
         
-        AverageReadingsDto FetchAverageMonthAllStationsReadings();
+        TemperatureReadingOverTimeDto FetchAverageMonthAllStationsReadings(int StationId);
     }
 }
