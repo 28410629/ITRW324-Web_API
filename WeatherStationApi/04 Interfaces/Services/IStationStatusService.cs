@@ -4,6 +4,6 @@ namespace WeatherStationApi._04_Interfaces.Services
 {
     public interface IStationStatusService
     {
-        StationStatusDto FetchStationStatus(int StationId);
+        StationStatusDto FetchStationStatus(string StationIds);
     }
 }

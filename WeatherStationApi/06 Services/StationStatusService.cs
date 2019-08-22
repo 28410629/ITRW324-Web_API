@@ -13,14 +13,19 @@ namespace WeatherStationApi._06_Services
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
         private readonly IStationsRepository __stationRepository = new StationsRepository(_factory);
 
-        public StationStatusDto FetchStationStatus(int StationId)
+        public StationStatusDto FetchStationStatus(string StationIds)
         {
+            int[] arrId;
+            
+            
+            int curID = 2;
+            
             StationStatusDto newDto = new StationStatusDto();
-            newDto.StationName = StationId.ToString();
+            newDto.StationName = curID.ToString();
 
             var avg_Readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddHours(-1) && x.StationId == StationId)
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddHours(-1) && x.StationId == curID)
                 .GroupBy(g => g.StationId)
                 .Select(g => new AverageReadingDto(
                     g.Key, 
@@ -63,7 +68,7 @@ namespace WeatherStationApi._06_Services
             
             var max_readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == StationId)
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == curID)
                 .GroupBy(g => g.StationId)
                 .Select(g => new MaxReadingDto(
                     g.Key, 
@@ -88,7 +93,7 @@ namespace WeatherStationApi._06_Services
             
             var min_readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == StationId)
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == curID)
                 .GroupBy(g => g.StationId)
                 .Select(g => new MinReadingDto(
                     g.Key, 
