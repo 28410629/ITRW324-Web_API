@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using WeatherStationApi._03_Dtos;
 using WeatherStationApi._04_Interfaces.Repositories;
@@ -15,7 +16,10 @@ namespace WeatherStationApi._06_Services
 
         public StationStatusDto FetchStationStatus(string StationIds)
         {
-            int[] arrId;
+            //init
+            StationsStatusesDto returnDto = new StationsStatusesDto();
+            string[] listIDs = StationIds.Split('-');
+            
             
             
             int curID = 2;
@@ -122,6 +126,9 @@ namespace WeatherStationApi._06_Services
             newDto.ForecastDay3 = "32.00";
             newDto.ForecastDay4 = "8.70";
 
+            
+            
+            
             return newDto;
         }
     }
