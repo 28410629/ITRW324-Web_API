@@ -12,9 +12,9 @@ namespace WeatherStationApi._07_WebApi.Get
         
         [Route("station")]
         [HttpGet]
-        public IActionResult FetchStationStatus(int StationId)
+        public IActionResult FetchStationStatus(string StationIds)
         {
-            var answer = _service.FetchStationStatus(StationId);
+            var answer = _service.FetchStationStatus(StationIds);
 
             return new JsonResult(answer);
         }
