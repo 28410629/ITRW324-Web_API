@@ -11,7 +11,7 @@ namespace WeatherStationApi._06_Services
     {
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
-        
+
         public TemperatureReadingsOverTimeDto FetchStationDayTemperatureReadingsOverTime(int stationID)
         {
             var readings =  _readingsRepository
