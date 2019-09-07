@@ -16,8 +16,12 @@ namespace WeatherStationApi._06_Services
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == stationID)
-                .Select(x => new TemperatureReadingOverTimeDto(x.StationId, x.Temperature.ToString(),x.ReadingDateTime));
+                /*.Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) /*&& x.StationId == stationID#1#)*/
+                .GroupBy(g => g.StationId)
+                .SelectMany(k => k)
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1))
+                .Select(i => new TemperatureReadingOverTimeDto(
+                    i.StationId, i.Temperature.ToString(),i.ReadingDateTime));
 
             
             return new TemperatureReadingsOverTimeDto
@@ -25,6 +29,26 @@ namespace WeatherStationApi._06_Services
                 TemperatureReadingOverTime = readings.ToList()
             };
         }
+        
+        /*public MaxReadingsDto FetchMaxDayAllStationsReadings()
+        {
+            var readings =  _readingsRepository
+                .FetchAll()
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1))
+                .GroupBy(g => g.StationId)
+                .Select(g => new MaxReadingDto(
+                    g.Key, 
+                    g.Max(x => x.Temperature).ToString(), 
+                    g.Max(x => x.Humidity).ToString(), 
+                    g.Max(x => x.AirPressure).ToString(), 
+                    g.Max(x => x.AmbientLight).ToString())
+                );
+
+            return new MaxReadingsDto()
+            {
+                MaxReadings = readings.ToList()
+            };
+        }*/
 
         public TemperatureReadingsOverTimeDto FetchStationWeekTemperatureReadingsOverTime(int StationId)
         {
