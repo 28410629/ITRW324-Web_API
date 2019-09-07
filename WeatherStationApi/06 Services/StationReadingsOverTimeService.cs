@@ -16,12 +16,9 @@ namespace WeatherStationApi._06_Services
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                /*.Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) /*&& x.StationId == stationID#1#)*/
-                .GroupBy(g => g.StationId)
-                .SelectMany(k => k)
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1))
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == stationID)
                 .Select(i => new TemperatureReadingOverTimeDto(
-                    i.StationId, i.Temperature.ToString(),i.ReadingDateTime));
+                    i.StationId, i.Temperature.ToString(),i.Humidity.ToString(),i.AirPressure.ToString(),i.AmbientLight.ToString(),i.ReadingDateTime));
 
             
             return new TemperatureReadingsOverTimeDto
@@ -30,16 +27,13 @@ namespace WeatherStationApi._06_Services
             };
         }
 
-        public TemperatureReadingsOverTimeDto FetchStationWeekTemperatureReadingsOverTime(int StationId)
+        public TemperatureReadingsOverTimeDto FetchStationWeekTemperatureReadingsOverTime(int stationID)
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                /*.Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) /*&& x.StationId == stationID#1#)*/
-                .GroupBy(g => g.StationId)
-                .SelectMany(k => k)
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7))
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7) && x.StationId == stationID)
                 .Select(i => new TemperatureReadingOverTimeDto(
-                    i.StationId, i.Temperature.ToString(),i.ReadingDateTime));
+                    i.StationId, i.Temperature.ToString(),i.Humidity.ToString(),i.AirPressure.ToString(),i.AmbientLight.ToString(),i.ReadingDateTime));
             
             /*var readings =  _readingsRepository
                 .FetchAll()
@@ -53,16 +47,13 @@ namespace WeatherStationApi._06_Services
             };
         }
 
-        public TemperatureReadingsOverTimeDto FetchStationMonthTemperatureReadingsOverTime(int StationId)
+        public TemperatureReadingsOverTimeDto FetchStationMonthTemperatureReadingsOverTime(int stationID)
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                /*.Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) /*&& x.StationId == stationID#1#)*/
-                .GroupBy(g => g.StationId)
-                .SelectMany(k => k)
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-31))
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-31) && x.StationId == stationID)
                 .Select(i => new TemperatureReadingOverTimeDto(
-                    i.StationId, i.Temperature.ToString(),i.ReadingDateTime));
+                    i.StationId, i.Temperature.ToString(),i.Humidity.ToString(),i.AirPressure.ToString(),i.AmbientLight.ToString(),i.ReadingDateTime));
             
             /*var readings =  _readingsRepository
                 .FetchAll()
