@@ -14,7 +14,7 @@ namespace WeatherStationApi._07_WebApi.Get
         [HttpGet]
         public IActionResult FetchStationDayTemperatureReadingsOverTime(int StationId)
         {
-            var answer = _service.FetchStationDayTemperatureReadingsOverTime(StationId);
+            var answer = _service.FetchStationDetailDay(StationId);
 
             return new JsonResult(answer);
         }
