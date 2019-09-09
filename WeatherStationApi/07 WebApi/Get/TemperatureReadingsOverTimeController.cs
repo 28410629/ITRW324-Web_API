@@ -26,7 +26,7 @@ namespace WeatherStationApi._07_WebApi.Get
         [HttpGet]
         public IActionResult FetchStationWeekTemperatureReadingsOverTime(int StationId)
         {
-            var answer = _service.FetchStationWeekTemperatureReadingsOverTime(StationId);
+            var answer = _service.FetchStationDetailWeek(StationId);
 
             return new JsonResult(answer);
         }
@@ -36,7 +36,18 @@ namespace WeatherStationApi._07_WebApi.Get
         [HttpGet]
         public IActionResult FetchStationMonthTemperatureReadingsOverTime(int StationId)
         {
-            var answer = _service.FetchStationMonthTemperatureReadingsOverTime(StationId);
+            var answer = _service.FetchStationDetailMonth(StationId);
+
+            return new JsonResult(answer);
+        }
+        
+        // /api/get/temperaturereadingsovertime/station/year?StationId=
+        [Route("station/year")]
+        [HttpGet]
+        public IActionResult FetchStationYearTemperatureReadingsOverTime(int StationId)
+        {
+            Console.WriteLine("Request StationDetailDay");
+            var answer = _service.FetchStationDetailYear(StationId);
 
             return new JsonResult(answer);
         }
