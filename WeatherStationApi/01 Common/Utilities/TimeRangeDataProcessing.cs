@@ -99,12 +99,20 @@ namespace WeatherStationApi._01_Common.Utilities
                         lightMax.ToString(),
                         new DateTime(data[i - 1].ReadingTime.Year, data[i - 1].ReadingTime.Month, data[i - 1].ReadingTime.Day,data[i - 1].ReadingTime.Hour, 0, 0)));
                     // reset
+                    currentHour = data[i].ReadingTime.Hour;
                     count = 0;
                     temp = 0;
+                    tempMin = double.MaxValue;
+                    tempMax = double.MinValue;
                     hum = 0;
+                    humMin = double.MaxValue;
+                    humMax = double.MinValue;
                     air = 0;
+                    airMin = double.MaxValue;
+                    airMax = double.MinValue;
                     light = 0;
-                    currentHour = data[i].ReadingTime.Hour;
+                    lightMin = double.MaxValue;
+                    lightMax = double.MinValue;
                     // start with new value
                     temp += data[i].TemperatureReading;
                     hum += data[i].HumiditiyReading;
@@ -113,7 +121,7 @@ namespace WeatherStationApi._01_Common.Utilities
                     count++;
                 }
 
-                Console.Write("Processing: " + i + "/" + data.Count + "\r");
+                Console.Write("Processing: " + (i +1) + "/" + data.Count + "\r");
             }
             
             Console.WriteLine();
@@ -126,7 +134,7 @@ namespace WeatherStationApi._01_Common.Utilities
         {
             Console.WriteLine("Process data");
             
-            int currentHour = data[0].ReadingTime.Hour;
+            int currentHour = data[0].ReadingTime.Day;
             int count = 0;
             double temp = 0;
             double tempMin = double.MaxValue;
@@ -148,7 +156,7 @@ namespace WeatherStationApi._01_Common.Utilities
 
             for (int i = 0; i < data.Count; i++)
             {
-                if (currentHour == data[i].ReadingTime.Hour)
+                if (currentHour == data[i].ReadingTime.Day)
                 {
                     temp += data[i].TemperatureReading;
                     if (tempMin > data[i].TemperatureReading)
@@ -215,12 +223,20 @@ namespace WeatherStationApi._01_Common.Utilities
                         lightMax.ToString(),
                         new DateTime(data[i - 1].ReadingTime.Year, data[i - 1].ReadingTime.Month, data[i - 1].ReadingTime.Day,data[i - 1].ReadingTime.Hour, 0, 0)));
                     // reset
+                    currentHour = data[i].ReadingTime.Day;
                     count = 0;
                     temp = 0;
+                    tempMin = double.MaxValue;
+                    tempMax = double.MinValue;
                     hum = 0;
+                    humMin = double.MaxValue;
+                    humMax = double.MinValue;
                     air = 0;
+                    airMin = double.MaxValue;
+                    airMax = double.MinValue;
                     light = 0;
-                    currentHour = data[i].ReadingTime.Hour;
+                    lightMin = double.MaxValue;
+                    lightMax = double.MinValue;
                     // start with new value
                     temp += data[i].TemperatureReading;
                     hum += data[i].HumiditiyReading;
@@ -229,7 +245,7 @@ namespace WeatherStationApi._01_Common.Utilities
                     count++;
                 }
 
-                Console.Write("Processing: " + i + "/" + data.Count + "\r");
+                Console.Write("Processing: " + (i +1) + "/" + data.Count + "\r");
             }
             
             Console.WriteLine();
@@ -242,7 +258,7 @@ namespace WeatherStationApi._01_Common.Utilities
         {
             Console.WriteLine("Process data");
             
-            int currentHour = data[0].ReadingTime.Hour;
+            int currentHour = data[0].ReadingTime.Day;
             int count = 0;
             double temp = 0;
             double tempMin = double.MaxValue;
@@ -264,7 +280,7 @@ namespace WeatherStationApi._01_Common.Utilities
 
             for (int i = 0; i < data.Count; i++)
             {
-                if (currentHour == data[i].ReadingTime.Hour)
+                if (currentHour == data[i].ReadingTime.Day)
                 {
                     temp += data[i].TemperatureReading;
                     if (tempMin > data[i].TemperatureReading)
@@ -331,12 +347,20 @@ namespace WeatherStationApi._01_Common.Utilities
                         lightMax.ToString(),
                         new DateTime(data[i - 1].ReadingTime.Year, data[i - 1].ReadingTime.Month, data[i - 1].ReadingTime.Day,data[i - 1].ReadingTime.Hour, 0, 0)));
                     // reset
+                    currentHour = data[i].ReadingTime.Day;
                     count = 0;
                     temp = 0;
+                    tempMin = double.MaxValue;
+                    tempMax = double.MinValue;
                     hum = 0;
+                    humMin = double.MaxValue;
+                    humMax = double.MinValue;
                     air = 0;
+                    airMin = double.MaxValue;
+                    airMax = double.MinValue;
                     light = 0;
-                    currentHour = data[i].ReadingTime.Hour;
+                    lightMin = double.MaxValue;
+                    lightMax = double.MinValue;
                     // start with new value
                     temp += data[i].TemperatureReading;
                     hum += data[i].HumiditiyReading;
@@ -345,7 +369,7 @@ namespace WeatherStationApi._01_Common.Utilities
                     count++;
                 }
 
-                Console.Write("Processing: " + i + "/" + data.Count + "\r");
+                Console.Write("Processing: " + (i +1) + "/" + data.Count + "\r");
             }
             
             Console.WriteLine();
@@ -358,7 +382,7 @@ namespace WeatherStationApi._01_Common.Utilities
         {
             Console.WriteLine("Process data");
             
-            int currentHour = data[0].ReadingTime.Hour;
+            int currentHour = data[0].ReadingTime.Month;
             int count = 0;
             double temp = 0;
             double tempMin = double.MaxValue;
@@ -380,7 +404,7 @@ namespace WeatherStationApi._01_Common.Utilities
 
             for (int i = 0; i < data.Count; i++)
             {
-                if (currentHour == data[i].ReadingTime.Hour)
+                if (currentHour == data[i].ReadingTime.Month)
                 {
                     temp += data[i].TemperatureReading;
                     if (tempMin > data[i].TemperatureReading)
@@ -447,12 +471,20 @@ namespace WeatherStationApi._01_Common.Utilities
                         lightMax.ToString(),
                         new DateTime(data[i - 1].ReadingTime.Year, data[i - 1].ReadingTime.Month, data[i - 1].ReadingTime.Day,data[i - 1].ReadingTime.Hour, 0, 0)));
                     // reset
+                    currentHour = data[i].ReadingTime.Month;
                     count = 0;
                     temp = 0;
+                    tempMin = double.MaxValue;
+                    tempMax = double.MinValue;
                     hum = 0;
+                    humMin = double.MaxValue;
+                    humMax = double.MinValue;
                     air = 0;
+                    airMin = double.MaxValue;
+                    airMax = double.MinValue;
                     light = 0;
-                    currentHour = data[i].ReadingTime.Hour;
+                    lightMin = double.MaxValue;
+                    lightMax = double.MinValue;
                     // start with new value
                     temp += data[i].TemperatureReading;
                     hum += data[i].HumiditiyReading;
@@ -461,7 +493,7 @@ namespace WeatherStationApi._01_Common.Utilities
                     count++;
                 }
 
-                Console.Write("Processing: " + i + "/" + data.Count + "\r");
+                Console.Write("Processing: " + (i +1) + "/" + data.Count + "\r");
             }
             
             Console.WriteLine();

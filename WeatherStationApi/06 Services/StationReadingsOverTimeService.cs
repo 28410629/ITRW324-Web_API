@@ -45,9 +45,6 @@ namespace WeatherStationApi._06_Services
                 .Select(i => new StationDetail(
                     i.StationId, i.Temperature,i.Humidity,i.AirPressure,i.AmbientLight,i.ReadingDateTime));
 
-            var data = readings.ToList();
-            
-            
             return new StationDetailDays()
             {
                 StationDetails = TimeRangeDataProcessing.ProcessWeekReadings(readings.ToList())
@@ -62,9 +59,6 @@ namespace WeatherStationApi._06_Services
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-31) && x.StationId == stationID)
                 .Select(i => new StationDetail(
                     i.StationId, i.Temperature,i.Humidity,i.AirPressure,i.AmbientLight,i.ReadingDateTime));
-
-            var data = readings.ToList();
-            
             
             return new StationDetailDays()
             {
@@ -81,9 +75,6 @@ namespace WeatherStationApi._06_Services
                 .Select(i => new StationDetail(
                     i.StationId, i.Temperature,i.Humidity,i.AirPressure,i.AmbientLight,i.ReadingDateTime));
 
-            var data = readings.ToList();
-            
-            
             return new StationDetailDays()
             {
                 StationDetails = TimeRangeDataProcessing.ProcessYearReadings(readings.ToList())
