@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.SignalR.Protocol;
 using Microsoft.CodeAnalysis;
 using WeatherStationApi._03_Dtos;
 using WeatherStationApi._04_Interfaces.Repositories;
@@ -45,6 +46,7 @@ namespace WeatherStationApi._06_Services
             var json = new List<StationDetailDay>();
             
             Console.WriteLine("To process: " + data.Count);
+            var begin = DateTime.Now;
 
             for (int i = 0; i < data.Count; i++)
             {
@@ -113,7 +115,7 @@ namespace WeatherStationApi._06_Services
                         (light / count).ToString(), 
                         lightMin.ToString(), 
                         lightMax.ToString(),
-                        new DateTime(data[--i].ReadingTime.Year, data[--i].ReadingTime.Month, data[--i].ReadingTime.Day,data[--i].ReadingTime.Hour, 0, 0)));
+                        new DateTime(data[i - 1].ReadingTime.Year, data[i - 1].ReadingTime.Month, data[i - 1].ReadingTime.Day,data[i - 1].ReadingTime.Hour, 0, 0)));
                     // reset
                     count = 0;
                     temp = 0;
@@ -129,6 +131,8 @@ namespace WeatherStationApi._06_Services
                 }
 
                 Console.Write("Processing: " + i + "/" + data.Count + "\r");
+                Console.WriteLine();
+                Console.WriteLine("Completion time: " + (DateTime.Now - begin).Seconds);
             }
             
             return new StationDetailDays()
