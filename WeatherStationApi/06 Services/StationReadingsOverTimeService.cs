@@ -20,8 +20,8 @@ namespace WeatherStationApi._06_Services
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == stationID)
-                .Select(i => new TemperatureReadingOverTimeDto(
-                    i.StationId, i.Temperature.ToString(),i.Humidity.ToString(),i.AirPressure.ToString(),i.AmbientLight.ToString(),i.ReadingDateTime));
+                .Select(i => new StationDetail(
+                    i.StationId, i.Temperature,i.Humidity,i.AirPressure,i.AmbientLight,i.ReadingDateTime));
 
             var data = readings.ToList();
             
@@ -50,48 +50,48 @@ namespace WeatherStationApi._06_Services
             {
                 if (currentHour == data[i].ReadingTime.Hour)
                 {
-                    temp += Convert.ToDouble(data[i].TemperatureReading);
-                    if (tempMin > Convert.ToDouble(data[i].TemperatureReading))
+                    temp += data[i].TemperatureReading;
+                    if (tempMin > data[i].TemperatureReading)
                     {
-                        tempMin = Convert.ToDouble(data[i].TemperatureReading);
+                        tempMin = data[i].TemperatureReading;
                     }
 
-                    if (tempMax < Convert.ToDouble(data[i].TemperatureReading))
+                    if (tempMax < data[i].TemperatureReading)
                     {
-                        tempMax = Convert.ToDouble(data[i].TemperatureReading);
+                        tempMax = data[i].TemperatureReading;
                     }
                     
-                    hum += Convert.ToDouble(data[i].HumiditiyReading);
-                    if (humMin > Convert.ToDouble(data[i].TemperatureReading))
+                    hum += data[i].HumiditiyReading;
+                    if (humMin > data[i].TemperatureReading)
                     {
-                        humMin = Convert.ToDouble(data[i].TemperatureReading);
+                        humMin = data[i].TemperatureReading;
                     }
 
-                    if (humMax < Convert.ToDouble(data[i].TemperatureReading))
+                    if (humMax < data[i].TemperatureReading)
                     {
-                        humMax = Convert.ToDouble(data[i].TemperatureReading);
-                    }
-                    
-                    air += Convert.ToDouble(data[i].AirPressureReading);
-                    if (airMin > Convert.ToDouble(data[i].TemperatureReading))
-                    {
-                        airMin = Convert.ToDouble(data[i].TemperatureReading);
+                        humMax = data[i].TemperatureReading;
                     }
 
-                    if (airMax < Convert.ToDouble(data[i].TemperatureReading))
+                    air += data[i].AirPressureReading;
+                    if (airMin > data[i].TemperatureReading)
                     {
-                        airMax = Convert.ToDouble(data[i].TemperatureReading);
-                    }
-                    
-                    light += Convert.ToDouble(data[i].AmbientLightReading);
-                    if (lightMin > Convert.ToDouble(data[i].TemperatureReading))
-                    {
-                        lightMin = Convert.ToDouble(data[i].TemperatureReading);
+                        airMin = data[i].TemperatureReading;
                     }
 
-                    if (lightMax < Convert.ToDouble(data[i].TemperatureReading))
+                    if (airMax < data[i].TemperatureReading)
                     {
-                        lightMax = Convert.ToDouble(data[i].TemperatureReading);
+                        airMax = data[i].TemperatureReading;
+                    }
+
+                    light += data[i].AmbientLightReading;
+                    if (lightMin > data[i].TemperatureReading)
+                    {
+                        lightMin = data[i].TemperatureReading;
+                    }
+
+                    if (lightMax < data[i].TemperatureReading)
+                    {
+                        lightMax = data[i].TemperatureReading;
                     }
                     
                     count++;
@@ -121,13 +121,14 @@ namespace WeatherStationApi._06_Services
                     air = 0;
                     light = 0;
                     // start with new value
-                    temp += Convert.ToDouble(data[i].TemperatureReading);
-                    hum += Convert.ToDouble(data[i].HumiditiyReading);
-                    air += Convert.ToDouble(data[i].AirPressureReading);
-                    light += Convert.ToDouble(data[i].AmbientLightReading);
+                    temp += data[i].TemperatureReading;
+                    hum += data[i].HumiditiyReading;
+                    air += data[i].AirPressureReading;
+                    light += data[i].AmbientLightReading;
                     count++;
                 }
 
+                Console.Write("Processing: " + i + "/" + data.Count + "\r");
             }
             
             return new StationDetailDays()
