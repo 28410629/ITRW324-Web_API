@@ -16,6 +16,7 @@ namespace WeatherStationApi._06_Services
 
         public StationDetailDays FetchStationDetailDay(int stationID)
         {
+            Console.WriteLine("Linq");
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == stationID)
@@ -23,6 +24,8 @@ namespace WeatherStationApi._06_Services
                     i.StationId, i.Temperature.ToString(),i.Humidity.ToString(),i.AirPressure.ToString(),i.AmbientLight.ToString(),i.ReadingDateTime));
 
             var data = readings.ToList();
+            
+            Console.WriteLine("Process data");
             
             int currentHour = data[0].ReadingTime.Hour;
             int count = 0;
@@ -40,6 +43,8 @@ namespace WeatherStationApi._06_Services
             double lightMax = double.MinValue;
             
             var json = new List<StationDetailDay>();
+            
+            Console.WriteLine("To process: " + data.Count);
 
             for (int i = 0; i < data.Count; i++)
             {
