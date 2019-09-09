@@ -122,6 +122,7 @@ namespace WeatherStationApi._06_Services
                     hum = 0;
                     air = 0;
                     light = 0;
+                    currentHour = data[i].ReadingTime.Hour;
                     // start with new value
                     temp += data[i].TemperatureReading;
                     hum += data[i].HumiditiyReading;
@@ -131,9 +132,10 @@ namespace WeatherStationApi._06_Services
                 }
 
                 Console.Write("Processing: " + i + "/" + data.Count + "\r");
-                Console.WriteLine();
-                Console.WriteLine("Completion time: " + (DateTime.Now - begin).Seconds);
             }
+            
+            Console.WriteLine();
+            Console.WriteLine("Completion time: " + (DateTime.Now - begin).Seconds);
             
             return new StationDetailDays()
             {
