@@ -46,36 +46,36 @@ namespace WeatherStationApi._01_Common.Utilities
                     }
                     
                     hum += data[i].HumiditiyReading;
-                    if (humMin > data[i].TemperatureReading)
+                    if (humMin > data[i].HumiditiyReading)
                     {
-                        humMin = data[i].TemperatureReading;
+                        humMin = data[i].HumiditiyReading;
                     }
 
-                    if (humMax < data[i].TemperatureReading)
+                    if (humMax < data[i].HumiditiyReading)
                     {
-                        humMax = data[i].TemperatureReading;
+                        humMax = data[i].HumiditiyReading;
                     }
 
                     air += data[i].AirPressureReading;
-                    if (airMin > data[i].TemperatureReading)
+                    if (airMin > data[i].AirPressureReading)
                     {
-                        airMin = data[i].TemperatureReading;
+                        airMin = data[i].AirPressureReading;
                     }
 
-                    if (airMax < data[i].TemperatureReading)
+                    if (airMax < data[i].AirPressureReading)
                     {
-                        airMax = data[i].TemperatureReading;
+                        airMax = data[i].AirPressureReading;
                     }
 
                     light += data[i].AmbientLightReading;
-                    if (lightMin > data[i].TemperatureReading)
+                    if (lightMin > data[i].AmbientLightReading)
                     {
-                        lightMin = data[i].TemperatureReading;
+                        lightMin = data[i].AmbientLightReading;
                     }
 
-                    if (lightMax < data[i].TemperatureReading)
+                    if (lightMax < data[i].AmbientLightReading)
                     {
-                        lightMax = data[i].TemperatureReading;
+                        lightMax = data[i].AmbientLightReading;
                     }
                     
                     count++;
@@ -170,36 +170,36 @@ namespace WeatherStationApi._01_Common.Utilities
                     }
                     
                     hum += data[i].HumiditiyReading;
-                    if (humMin > data[i].TemperatureReading)
+                    if (humMin > data[i].HumiditiyReading)
                     {
-                        humMin = data[i].TemperatureReading;
+                        humMin = data[i].HumiditiyReading;
                     }
 
-                    if (humMax < data[i].TemperatureReading)
+                    if (humMax < data[i].HumiditiyReading)
                     {
-                        humMax = data[i].TemperatureReading;
+                        humMax = data[i].HumiditiyReading;
                     }
 
                     air += data[i].AirPressureReading;
-                    if (airMin > data[i].TemperatureReading)
+                    if (airMin > data[i].AirPressureReading)
                     {
-                        airMin = data[i].TemperatureReading;
+                        airMin = data[i].AirPressureReading;
                     }
 
-                    if (airMax < data[i].TemperatureReading)
+                    if (airMax < data[i].AirPressureReading)
                     {
-                        airMax = data[i].TemperatureReading;
+                        airMax = data[i].AirPressureReading;
                     }
 
                     light += data[i].AmbientLightReading;
-                    if (lightMin > data[i].TemperatureReading)
+                    if (lightMin > data[i].AmbientLightReading)
                     {
-                        lightMin = data[i].TemperatureReading;
+                        lightMin = data[i].AmbientLightReading;
                     }
 
-                    if (lightMax < data[i].TemperatureReading)
+                    if (lightMax < data[i].AmbientLightReading)
                     {
-                        lightMax = data[i].TemperatureReading;
+                        lightMax = data[i].AmbientLightReading;
                     }
                     
                     count++;
@@ -294,36 +294,36 @@ namespace WeatherStationApi._01_Common.Utilities
                     }
                     
                     hum += data[i].HumiditiyReading;
-                    if (humMin > data[i].TemperatureReading)
+                    if (humMin > data[i].HumiditiyReading)
                     {
-                        humMin = data[i].TemperatureReading;
+                        humMin = data[i].HumiditiyReading;
                     }
 
-                    if (humMax < data[i].TemperatureReading)
+                    if (humMax < data[i].HumiditiyReading)
                     {
-                        humMax = data[i].TemperatureReading;
+                        humMax = data[i].HumiditiyReading;
                     }
 
                     air += data[i].AirPressureReading;
-                    if (airMin > data[i].TemperatureReading)
+                    if (airMin > data[i].AirPressureReading)
                     {
-                        airMin = data[i].TemperatureReading;
+                        airMin = data[i].AirPressureReading;
                     }
 
-                    if (airMax < data[i].TemperatureReading)
+                    if (airMax < data[i].AirPressureReading)
                     {
-                        airMax = data[i].TemperatureReading;
+                        airMax = data[i].AirPressureReading;
                     }
 
                     light += data[i].AmbientLightReading;
-                    if (lightMin > data[i].TemperatureReading)
+                    if (lightMin > data[i].AmbientLightReading)
                     {
-                        lightMin = data[i].TemperatureReading;
+                        lightMin = data[i].AmbientLightReading;
                     }
 
-                    if (lightMax < data[i].TemperatureReading)
+                    if (lightMax < data[i].AmbientLightReading)
                     {
-                        lightMax = data[i].TemperatureReading;
+                        lightMax = data[i].AmbientLightReading;
                     }
                     
                     count++;
@@ -418,36 +418,36 @@ namespace WeatherStationApi._01_Common.Utilities
                     }
                     
                     hum += data[i].HumiditiyReading;
-                    if (humMin > data[i].TemperatureReading)
+                    if (humMin > data[i].HumiditiyReading)
                     {
-                        humMin = data[i].TemperatureReading;
+                        humMin = data[i].HumiditiyReading;
                     }
 
-                    if (humMax < data[i].TemperatureReading)
+                    if (humMax < data[i].HumiditiyReading)
                     {
-                        humMax = data[i].TemperatureReading;
+                        humMax = data[i].HumiditiyReading;
                     }
 
                     air += data[i].AirPressureReading;
-                    if (airMin > data[i].TemperatureReading)
+                    if (airMin > data[i].AirPressureReading)
                     {
-                        airMin = data[i].TemperatureReading;
+                        airMin = data[i].AirPressureReading;
                     }
 
-                    if (airMax < data[i].TemperatureReading)
+                    if (airMax < data[i].AirPressureReading)
                     {
-                        airMax = data[i].TemperatureReading;
+                        airMax = data[i].AirPressureReading;
                     }
 
                     light += data[i].AmbientLightReading;
-                    if (lightMin > data[i].TemperatureReading)
+                    if (lightMin > data[i].AmbientLightReading)
                     {
-                        lightMin = data[i].TemperatureReading;
+                        lightMin = data[i].AmbientLightReading;
                     }
 
-                    if (lightMax < data[i].TemperatureReading)
+                    if (lightMax < data[i].AmbientLightReading)
                     {
-                        lightMax = data[i].TemperatureReading;
+                        lightMax = data[i].AmbientLightReading;
                     }
                     
                     count++;
