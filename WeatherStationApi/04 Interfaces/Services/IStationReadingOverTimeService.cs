@@ -5,9 +5,8 @@ namespace WeatherStationApi._04_Interfaces.Services
     public interface ITemperatureReadingOverTimeService
     {
         StationDetailDays FetchStationDetailDay(int stationID);
-        
-        TemperatureReadingsOverTimeDto FetchStationWeekTemperatureReadingsOverTime(int StationId);
-        
-        TemperatureReadingsOverTimeDto FetchStationMonthTemperatureReadingsOverTime(int StationId);
+        StationDetailDays FetchStationDetailWeek(int stationID);
+        StationDetailDays FetchStationDetailMonth(int stationID);
+        StationDetailDays FetchStationDetailYear(int stationID);
     }
 }
