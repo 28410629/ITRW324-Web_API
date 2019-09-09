@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using WeatherStationApi._04_Interfaces.Services;
 using WeatherStationApi._06_Services;
@@ -14,7 +15,8 @@ namespace WeatherStationApi._07_WebApi.Get
         [HttpGet]
         public IActionResult FetchStationDayTemperatureReadingsOverTime(int StationId)
         {
-            var answer = _service.FetchStationDayTemperatureReadingsOverTime(StationId);
+            Console.WriteLine("Request StationDetailDay");
+            var answer = _service.FetchStationDetailDay(StationId);
 
             return new JsonResult(answer);
         }
