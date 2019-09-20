@@ -8,6 +8,9 @@ namespace WeatherStationApi._05_Repositories
     {
         public ReadingsRepository(DataContextFactory factory) : base(factory)
         { }
+        
+
+
 
     }
 }

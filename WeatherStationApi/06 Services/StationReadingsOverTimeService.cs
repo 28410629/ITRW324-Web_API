@@ -21,7 +21,7 @@ namespace WeatherStationApi._06_Services
             Console.WriteLine("Linq");
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == stationID)
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddHours(-24) && x.StationId == stationID)
                 .Select(i => new StationDetail(
                     i.StationId, 
                     i.Temperature,

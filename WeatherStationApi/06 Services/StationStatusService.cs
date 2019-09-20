@@ -50,6 +50,7 @@ namespace WeatherStationApi._06_Services
                 catch (Exception e)
                 {
                     newDto.AverageTemp = "0";
+                    Console.WriteLine(e.Source + " : " + e.Message);
                 }
 
                 try
@@ -59,6 +60,7 @@ namespace WeatherStationApi._06_Services
                 catch (Exception e)
                 {
                     newDto.Humidity = "0";
+                    Console.WriteLine(e.Source + " : " + e.Message);
                 }
 
                 try
@@ -68,6 +70,7 @@ namespace WeatherStationApi._06_Services
                 catch (Exception e)
                 {
                     newDto.AmbientLight = "0";
+                    Console.WriteLine(e.Source + " : " + e.Message);
                 }
 
 
@@ -94,6 +97,7 @@ namespace WeatherStationApi._06_Services
                 catch (Exception e)
                 {
                     newDto.MaxTemp = "0";
+                    Console.WriteLine(e.Source + " : " + e.Message);
                 }
 
                 var min_readings = _readingsRepository
@@ -118,6 +122,7 @@ namespace WeatherStationApi._06_Services
                 catch (Exception e)
                 {
                     newDto.MinTemp = "0";
+                    Console.WriteLine(e.Source + " : " + e.Message);
                 }
 
 
