@@ -21,14 +21,15 @@ namespace WeatherStationApi._06_Services
             Console.WriteLine("Linq");
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddHours(-24) && x.StationId == stationID)
+                .Where(x => x.ReadingDateTime.Date == DateTime.Now.Date && x.StationId == stationID)
                 .Select(i => new StationDetail(
                     i.StationId, 
                     i.Temperature,
                     i.Humidity,
                     i.AirPressure,
                     i.AmbientLight,
-                    i.ReadingDateTime));
+                    i.ReadingDateTime)
+                );
             
             return new StationDetailDays()
             {
@@ -41,9 +42,15 @@ namespace WeatherStationApi._06_Services
             Console.WriteLine("Linq");
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7) && x.StationId == stationID)
+                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-7) && x.StationId == stationID)
                 .Select(i => new StationDetail(
-                    i.StationId, i.Temperature,i.Humidity,i.AirPressure,i.AmbientLight,i.ReadingDateTime));
+                    i.StationId,
+                    i.Temperature,
+                    i.Humidity,
+                    i.AirPressure
+                    ,i.AmbientLight,
+                    i.ReadingDateTime)
+                );
 
             return new StationDetailDays()
             {
@@ -56,9 +63,15 @@ namespace WeatherStationApi._06_Services
             Console.WriteLine("Linq");
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-31) && x.StationId == stationID)
+                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-31) && x.StationId == stationID)
                 .Select(i => new StationDetail(
-                    i.StationId, i.Temperature,i.Humidity,i.AirPressure,i.AmbientLight,i.ReadingDateTime));
+                    i.StationId,
+                    i.Temperature,
+                    i.Humidity,
+                    i.AirPressure
+                    ,i.AmbientLight,
+                    i.ReadingDateTime)
+                );
             
             return new StationDetailDays()
             {
@@ -71,9 +84,15 @@ namespace WeatherStationApi._06_Services
             Console.WriteLine("Linq");
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-365) && x.StationId == stationID)
+                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-365) && x.StationId == stationID)
                 .Select(i => new StationDetail(
-                    i.StationId, i.Temperature,i.Humidity,i.AirPressure,i.AmbientLight,i.ReadingDateTime));
+                    i.StationId,
+                    i.Temperature,
+                    i.Humidity,
+                    i.AirPressure
+                    ,i.AmbientLight,
+                    i.ReadingDateTime)
+                );
 
             return new StationDetailDays()
             {
