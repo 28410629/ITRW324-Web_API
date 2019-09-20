@@ -4,8 +4,6 @@ namespace WeatherStationApi._03_Dtos
 {
     public class RawReadingDto
     {
-        public RawReadingDto() { }
-        
         public RawReadingDto(DateTime Date, double Air_Pressure, double Ambient_Light, double Humidity, double Temperature)
         {
             this.Date = Date;

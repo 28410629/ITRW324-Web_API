@@ -41,7 +41,7 @@ namespace WeatherStationApi._07_WebApi.Get
         }
         
         // /api/get/rawreadings/station/year?StationId=
-        [Route("station/month")]
+        [Route("station/year")]
         [HttpGet]
         public IActionResult FetchRawYearAStationReadings(int StationId)
         {

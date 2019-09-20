@@ -12,7 +12,6 @@ namespace WeatherStationApi._06_Services
     {
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
-        private readonly IStationsRepository __stationRepository = new StationsRepository(_factory);
 
         public StationsStatusesDto FetchStationStatus(string StationIds)
         {
