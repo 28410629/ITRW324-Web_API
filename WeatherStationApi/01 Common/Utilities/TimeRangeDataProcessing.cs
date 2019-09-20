@@ -121,7 +121,8 @@ namespace WeatherStationApi._01_Common.Utilities
                     count++;
                 }
 
-                Console.Write("Processing: " + (i +1) + "/" + data.Count + "\r");
+                // Console.Write("Processing: " + (i +1) + "/" + data.Count + "\r");
+                Console.WriteLine(data[i].ReadingTime.Hour);
             }
             
             Console.WriteLine();
