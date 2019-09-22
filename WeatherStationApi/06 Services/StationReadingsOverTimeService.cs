@@ -99,8 +99,8 @@ namespace WeatherStationApi._06_Services
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-365) && x.StationId == stationID)
-                .GroupBy(y => y.ReadingDateTime.Date)
+                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddMonths(-12) && x.StationId == stationID)
+                .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month})
                 .Select(y => new StationDetailDay(
                     stationID,
                     y.Average(x => x.Temperature).ToString(),
@@ -115,7 +115,7 @@ namespace WeatherStationApi._06_Services
                     y.Average(x => x.AmbientLight).ToString(),
                     y.Min(x => x.AmbientLight).ToString(),
                     y.Max(x => x.AmbientLight).ToString(),
-                    y.Key)
+                    new DateTime(y.Key.Year, y.Key.Month, 1))
                 );
 
             return new StationDetailDays()
