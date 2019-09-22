@@ -42,7 +42,7 @@ namespace WeatherStationApi._06_Services
             
             return new StationDetailDays()
             {
-                StationDetails = TimeRangeDataProcessing.ProcessDayReadings(readings.ToList())
+                StationDetails = readings.ToList()
             };
         }
 
