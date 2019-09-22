@@ -22,81 +22,114 @@ namespace WeatherStationApi._06_Services
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime.Date == DateTime.Now.Date && x.StationId == stationID)
-                .Select(i => new StationDetail(
-                    i.StationId, 
-                    i.Temperature,
-                    i.Humidity,
-                    i.AirPressure,
-                    i.AmbientLight,
-                    i.ReadingDateTime)
+                .GroupBy(y => y.ReadingDateTime.Hour)
+                .Select(y => new StationDetailDay(
+                    stationID,
+                    y.Average(x => x.Temperature).ToString(),
+                    y.Min(x => x.Temperature).ToString(),
+                    y.Max(x => x.Temperature).ToString(),
+                    y.Average(x => x.Humidity).ToString(),
+                    y.Min(x => x.Humidity).ToString(),
+                    y.Max(x => x.Humidity).ToString(),
+                    y.Average(x => x.AirPressure).ToString(),
+                    y.Min(x => x.AirPressure).ToString(),
+                    y.Max(x => x.AirPressure).ToString(),
+                    y.Average(x => x.AmbientLight).ToString(),
+                    y.Min(x => x.AmbientLight).ToString(),
+                    y.Max(x => x.AmbientLight).ToString(),
+                    new DateTime(DateTime.Now.Date.Year, DateTime.Now.Date.Month, DateTime.Now.Date.Day, y.Key, 0, 0))
                 );
             
             return new StationDetailDays()
             {
-                StationDetails = TimeRangeDataProcessing.ProcessDayReadings(readings.ToList())
+                StationDetails = readings.ToList()
             };
         }
 
         public StationDetailDays FetchStationDetailWeek(int stationID)
         {
-            Console.WriteLine("Linq");
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-7) && x.StationId == stationID)
-                .Select(i => new StationDetail(
-                    i.StationId,
-                    i.Temperature,
-                    i.Humidity,
-                    i.AirPressure
-                    ,i.AmbientLight,
-                    i.ReadingDateTime)
+                .GroupBy(y => y.ReadingDateTime.Date)
+                .Select(y => new StationDetailDay(
+                    stationID,
+                    y.Average(x => x.Temperature).ToString(),
+                    y.Min(x => x.Temperature).ToString(),
+                    y.Max(x => x.Temperature).ToString(),
+                    y.Average(x => x.Humidity).ToString(),
+                    y.Min(x => x.Humidity).ToString(),
+                    y.Max(x => x.Humidity).ToString(),
+                    y.Average(x => x.AirPressure).ToString(),
+                    y.Min(x => x.AirPressure).ToString(),
+                    y.Max(x => x.AirPressure).ToString(),
+                    y.Average(x => x.AmbientLight).ToString(),
+                    y.Min(x => x.AmbientLight).ToString(),
+                    y.Max(x => x.AmbientLight).ToString(),
+                    y.Key)
                 );
 
             return new StationDetailDays()
             {
-                StationDetails = TimeRangeDataProcessing.ProcessWeekReadings(readings.ToList())
+                StationDetails = readings.ToList()
             };
         }
 
         public StationDetailDays FetchStationDetailMonth(int stationID)
         {
-            Console.WriteLine("Linq");
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-31) && x.StationId == stationID)
-                .Select(i => new StationDetail(
-                    i.StationId,
-                    i.Temperature,
-                    i.Humidity,
-                    i.AirPressure
-                    ,i.AmbientLight,
-                    i.ReadingDateTime)
+                .GroupBy(y => y.ReadingDateTime.Date)
+                .Select(y => new StationDetailDay(
+                    stationID,
+                    y.Average(x => x.Temperature).ToString(),
+                    y.Min(x => x.Temperature).ToString(),
+                    y.Max(x => x.Temperature).ToString(),
+                    y.Average(x => x.Humidity).ToString(),
+                    y.Min(x => x.Humidity).ToString(),
+                    y.Max(x => x.Humidity).ToString(),
+                    y.Average(x => x.AirPressure).ToString(),
+                    y.Min(x => x.AirPressure).ToString(),
+                    y.Max(x => x.AirPressure).ToString(),
+                    y.Average(x => x.AmbientLight).ToString(),
+                    y.Min(x => x.AmbientLight).ToString(),
+                    y.Max(x => x.AmbientLight).ToString(),
+                    y.Key)
                 );
-            
+
             return new StationDetailDays()
             {
-                StationDetails = TimeRangeDataProcessing.ProcessMonthReadings(readings.ToList())
+                StationDetails = readings.ToList()
             };
         }
         
         public StationDetailDays FetchStationDetailYear(int stationID)
         {
-            Console.WriteLine("Linq");
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-365) && x.StationId == stationID)
-                .Select(i => new StationDetail(
-                    i.StationId,
-                    i.Temperature,
-                    i.Humidity,
-                    i.AirPressure
-                    ,i.AmbientLight,
-                    i.ReadingDateTime)
+                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddMonths(-12) && x.StationId == stationID)
+                .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month})
+                .Select(y => new StationDetailDay(
+                    stationID,
+                    y.Average(x => x.Temperature).ToString(),
+                    y.Min(x => x.Temperature).ToString(),
+                    y.Max(x => x.Temperature).ToString(),
+                    y.Average(x => x.Humidity).ToString(),
+                    y.Min(x => x.Humidity).ToString(),
+                    y.Max(x => x.Humidity).ToString(),
+                    y.Average(x => x.AirPressure).ToString(),
+                    y.Min(x => x.AirPressure).ToString(),
+                    y.Max(x => x.AirPressure).ToString(),
+                    y.Average(x => x.AmbientLight).ToString(),
+                    y.Min(x => x.AmbientLight).ToString(),
+                    y.Max(x => x.AmbientLight).ToString(),
+                    new DateTime(y.Key.Year, y.Key.Month, 1))
                 );
 
             return new StationDetailDays()
             {
-                StationDetails = TimeRangeDataProcessing.ProcessYearReadings(readings.ToList())
+                StationDetails = readings.ToList()
             };
         }
 
