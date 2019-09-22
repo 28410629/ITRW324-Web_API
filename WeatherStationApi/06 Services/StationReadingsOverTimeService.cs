@@ -22,13 +22,22 @@ namespace WeatherStationApi._06_Services
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime.Date == DateTime.Now.Date && x.StationId == stationID)
-                .Select(i => new StationDetail(
-                    i.StationId, 
-                    i.Temperature,
-                    i.Humidity,
-                    i.AirPressure,
-                    i.AmbientLight,
-                    i.ReadingDateTime)
+                .GroupBy(y => y.ReadingDateTime.Hour)
+                .Select(y => new StationDetailDay(
+                    stationID,
+                    y.Average(x => x.Temperature).ToString(),
+                    y.Min(x => x.Temperature).ToString(),
+                    y.Max(x => x.Temperature).ToString(),
+                    y.Average(x => x.Humidity).ToString(),
+                    y.Min(x => x.Humidity).ToString(),
+                    y.Max(x => x.Humidity).ToString(),
+                    y.Average(x => x.AirPressure).ToString(),
+                    y.Min(x => x.AirPressure).ToString(),
+                    y.Max(x => x.AirPressure).ToString(),
+                    y.Average(x => x.AmbientLight).ToString(),
+                    y.Min(x => x.AmbientLight).ToString(),
+                    y.Max(x => x.AmbientLight).ToString(),
+                    new DateTime(DateTime.Now.Date.Year, DateTime.Now.Date.Month, DateTime.Now.Date.Day, y.Key, 0, 0))
                 );
             
             return new StationDetailDays()
