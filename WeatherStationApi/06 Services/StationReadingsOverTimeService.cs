@@ -16,13 +16,13 @@ namespace WeatherStationApi._06_Services
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
 
-        public StationDetailDays FetchStationDetailDay(int stationID)
+        public StationDetailDays FetchStationDetailDay(int stationID, DateTime Date)
         {
-            Console.WriteLine("Linq");
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime.Date == DateTime.Now.Date && x.StationId == stationID)
-                .GroupBy(y => y.ReadingDateTime.Hour)
+                .Where(x => x.StationId == stationID)
+                .Where(x => x.ReadingDateTime >= Date.AddMinutes(-1440))
+                .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month, y.ReadingDateTime.Day, y.ReadingDateTime.Hour})
                 .Select(y => new StationDetailDay(
                     stationID,
                     y.Average(x => x.Temperature).ToString(),
@@ -37,7 +37,7 @@ namespace WeatherStationApi._06_Services
                     y.Average(x => x.AmbientLight).ToString(),
                     y.Min(x => x.AmbientLight).ToString(),
                     y.Max(x => x.AmbientLight).ToString(),
-                    new DateTime(DateTime.Now.Date.Year, DateTime.Now.Date.Month, DateTime.Now.Date.Day, y.Key, 0, 0))
+                    new DateTime(y.Key.Year, y.Key.Month, y.Key.Day, y.Key.Hour, 0, 0))
                 );
             
             return new StationDetailDays()
@@ -46,11 +46,11 @@ namespace WeatherStationApi._06_Services
             };
         }
 
-        public StationDetailDays FetchStationDetailWeek(int stationID)
+        public StationDetailDays FetchStationDetailWeek(int stationID, DateTime Date)
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-7) && x.StationId == stationID)
+                .Where(x => x.ReadingDateTime >= Date.AddDays(-7) && x.StationId == stationID)
                 .GroupBy(y => y.ReadingDateTime.Date)
                 .Select(y => new StationDetailDay(
                     stationID,
@@ -75,11 +75,11 @@ namespace WeatherStationApi._06_Services
             };
         }
 
-        public StationDetailDays FetchStationDetailMonth(int stationID)
+        public StationDetailDays FetchStationDetailMonth(int stationID, DateTime Date)
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-31) && x.StationId == stationID)
+                .Where(x => x.ReadingDateTime >= Date.AddDays(-31) && x.StationId == stationID)
                 .GroupBy(y => y.ReadingDateTime.Date)
                 .Select(y => new StationDetailDay(
                     stationID,
@@ -104,11 +104,11 @@ namespace WeatherStationApi._06_Services
             };
         }
         
-        public StationDetailDays FetchStationDetailYear(int stationID)
+        public StationDetailDays FetchStationDetailYear(int stationID, DateTime Date)
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddMonths(-12) && x.StationId == stationID)
+                .Where(x => x.ReadingDateTime >= Date.AddMonths(-12) && x.StationId == stationID)
                 .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month})
                 .Select(y => new StationDetailDay(
                     stationID,
@@ -132,45 +132,5 @@ namespace WeatherStationApi._06_Services
                 StationDetails = readings.ToList()
             };
         }
-
-        /*public TemperatureReadingsOverTimeDto FetchStationWeekTemperatureReadingsOverTime(int stationID)
-        {
-            var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7) && x.StationId == stationID)
-                .Select(i => new TemperatureReadingOverTimeDto(
-                    i.StationId, i.Temperature.ToString(),i.Humidity.ToString(),i.AirPressure.ToString(),i.AmbientLight.ToString(),i.ReadingDateTime));
-            
-            /*var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-7) && x.StationId == StationId)
-                .Select(x => new TemperatureReadingOverTimeDto(x.StationId, x.Temperature.ToString(),x.ReadingDateTime));#1#
-
-            
-            return new TemperatureReadingsOverTimeDto
-            {
-                TemperatureReadingOverTime = readings.ToList()
-            };
-        }
-
-        public TemperatureReadingsOverTimeDto FetchStationMonthTemperatureReadingsOverTime(int stationID)
-        {
-            var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-31) && x.StationId == stationID)
-                .Select(i => new TemperatureReadingOverTimeDto(
-                    i.StationId, i.Temperature.ToString(),i.Humidity.ToString(),i.AirPressure.ToString(),i.AmbientLight.ToString(),i.ReadingDateTime));
-            
-            /*var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-31) && x.StationId == StationId)
-                .Select(x => new TemperatureReadingOverTimeDto(x.StationId, x.Temperature.ToString(),x.ReadingDateTime));#1#
-
-            
-            return new TemperatureReadingsOverTimeDto
-            {
-                TemperatureReadingOverTime = readings.ToList()
-            };
-        }*/
     }
 }
