@@ -38,11 +38,37 @@ namespace WeatherStationApi._06_Services
                     y.Min(x => x.AmbientLight).ToString(),
                     y.Max(x => x.AmbientLight).ToString(),
                     new DateTime(y.Key.Year, y.Key.Month, y.Key.Day, y.Key.Hour, 0, 0))
-                );
+                ).ToList();
+
+            if (readings.Count() >= 2)
+            {
+                for (int i = 1; i < readings.Count(); i++)
+                {
+                    if (readings[i-1].ReadingTime.AddHours(1).CompareTo(readings[i].ReadingTime) != 0)
+                    {
+                        readings.Insert(i, new StationDetailDay(
+                            readings[i].StationId,
+                            0.ToString(),
+                            0.ToString(),
+                            0.ToString(),
+                            0.ToString(),
+                            0.ToString(),
+                            0.ToString(),
+                            0.ToString(),
+                            0.ToString(),
+                            0.ToString(),
+                            0.ToString(),
+                            0.ToString(),
+                            0.ToString(),
+                            readings[i-1].ReadingTime.AddHours(1)));
+                        --i;
+                    }
+                }
+            }
             
             return new StationDetailDays()
             {
-                StationDetails = readings.ToList()
+                StationDetails = readings
             };
         }
 
