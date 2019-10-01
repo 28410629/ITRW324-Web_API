@@ -6,7 +6,9 @@ namespace WeatherStationApi._02_Models
     {
         public int LocationId { get; set; }
         
-        public string LocationName { get; set; }
+        public string Province { get; set; }
+        
+        public string City { get; set; }
 
         // Relation
         

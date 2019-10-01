@@ -67,10 +67,9 @@ namespace WeatherStationApi._05_Repositories
                 
                 entity.HasKey(e => e.LocationId);
 
-                entity.Property(e => e.LocationId).HasColumnName("LOCATIONID").IsRequired();
-
-                entity.Property(e => e.LocationName).HasColumnName("LOCATIONNAME").IsRequired();
+                entity.Property(e => e.Province).HasColumnName("PROVINCE").IsRequired();
                 
+                entity.Property(e => e.City).HasColumnName("CITY").IsRequired();
             });
             
             modelBuilder.Entity<Reading>(entity =>
