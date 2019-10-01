@@ -7,20 +7,19 @@ using WeatherStationApi._05_Repositories;
 
 namespace WeatherStationApi._06_Services
 {
-    public class TemperatureReadingsOverTimeService : ITemperatureReadingOverTimeService
+    public class LocationReadingsService : ILocationReadingsService
     {
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
-
-        public StationDetailDays FetchStationDetailDay(int stationID, DateTime Date)
+        
+        public LocationReadingsDto FetchLocationDetailDay(string province, string city, DateTime Date)
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.StationId == stationID)
+                .Where(x => x.Station.Location.City == city && x.Station.Location.Province == province)
                 .Where(x => x.ReadingDateTime >= Date.AddMinutes(-1440))
                 .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month, y.ReadingDateTime.Day, y.ReadingDateTime.Hour})
-                .Select(y => new StationDetailDay(
-                    stationID,
+                .Select(y => new LocationReadingDto(
                     y.Average(x => x.Temperature).ToString(),
                     y.Min(x => x.Temperature).ToString(),
                     y.Max(x => x.Temperature).ToString(),
@@ -42,8 +41,7 @@ namespace WeatherStationApi._06_Services
                 {
                     if (readings[i-1].ReadingTime.AddHours(1).CompareTo(readings[i].ReadingTime) != 0)
                     {
-                        readings.Insert(i, new StationDetailDay(
-                            readings[i].StationId,
+                        readings.Insert(i, new LocationReadingDto(
                             0.ToString(),
                             0.ToString(),
                             0.ToString(),
@@ -61,21 +59,30 @@ namespace WeatherStationApi._06_Services
                     }
                 }
             }
+
+            if (readings.Count == 0)
+            {
+                return new LocationReadingsDto()
+                {
+                    Found = 0,
+                    Readings = readings
+                };
+            }
             
-            return new StationDetailDays()
+            return new LocationReadingsDto()
             {
-                StationDetails = readings
+                Found = 1,
+                Readings = readings
             };
         }
 
-        public StationDetailDays FetchStationDetailWeek(int stationID, DateTime Date)
+        public LocationReadingsDto FetchLocationDetailWeek(string province, string city, DateTime Date)
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= Date.AddDays(-7) && x.StationId == stationID)
+                .Where(x => x.Station.Location.City == city && x.Station.Location.Province == province)
                 .GroupBy(y => y.ReadingDateTime.Date)
-                .Select(y => new StationDetailDay(
-                    stationID,
+                .Select(y => new LocationReadingDto(
                     y.Average(x => x.Temperature).ToString(),
                     y.Min(x => x.Temperature).ToString(),
                     y.Max(x => x.Temperature).ToString(),
@@ -89,22 +96,31 @@ namespace WeatherStationApi._06_Services
                     y.Min(x => x.AmbientLight).ToString(),
                     y.Max(x => x.AmbientLight).ToString(),
                     y.Key)
-                );
+                ).ToList();
 
-            return new StationDetailDays()
+            if (readings.Count == 0)
             {
-                StationDetails = readings.ToList()
+                return new LocationReadingsDto()
+                {
+                    Found = 0,
+                    Readings = readings
+                };
+            }
+            
+            return new LocationReadingsDto()
+            {
+                Found = 1,
+                Readings = readings
             };
         }
 
-        public StationDetailDays FetchStationDetailMonth(int stationID, DateTime Date)
+        public LocationReadingsDto FetchLocationDetailMonth(string province, string city, DateTime Date)
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= Date.AddDays(-31) && x.StationId == stationID)
+                .Where(x => x.Station.Location.City == city && x.Station.Location.Province == province)
                 .GroupBy(y => y.ReadingDateTime.Date)
-                .Select(y => new StationDetailDay(
-                    stationID,
+                .Select(y => new LocationReadingDto(
                     y.Average(x => x.Temperature).ToString(),
                     y.Min(x => x.Temperature).ToString(),
                     y.Max(x => x.Temperature).ToString(),
@@ -118,22 +134,31 @@ namespace WeatherStationApi._06_Services
                     y.Min(x => x.AmbientLight).ToString(),
                     y.Max(x => x.AmbientLight).ToString(),
                     y.Key)
-                );
+                ).ToList();
 
-            return new StationDetailDays()
+            if (readings.Count == 0)
             {
-                StationDetails = readings.ToList()
+                return new LocationReadingsDto()
+                {
+                    Found = 0,
+                    Readings = readings
+                };
+            }
+            
+            return new LocationReadingsDto()
+            {
+                Found = 1,
+                Readings = readings
             };
         }
         
-        public StationDetailDays FetchStationDetailYear(int stationID, DateTime Date)
+        public LocationReadingsDto FetchLocationDetailYear(string province, string city, DateTime Date)
         {
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= Date.AddMonths(-12) && x.StationId == stationID)
+                .Where(x => x.Station.Location.City == city && x.Station.Location.Province == province)
                 .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month})
-                .Select(y => new StationDetailDay(
-                    stationID,
+                .Select(y => new LocationReadingDto(
                     y.Average(x => x.Temperature).ToString(),
                     y.Min(x => x.Temperature).ToString(),
                     y.Max(x => x.Temperature).ToString(),
@@ -147,11 +172,21 @@ namespace WeatherStationApi._06_Services
                     y.Min(x => x.AmbientLight).ToString(),
                     y.Max(x => x.AmbientLight).ToString(),
                     new DateTime(y.Key.Year, y.Key.Month, 1))
-                );
+                ).ToList();
 
-            return new StationDetailDays()
+            if (readings.Count == 0)
             {
-                StationDetails = readings.ToList()
+                return new LocationReadingsDto()
+                {
+                    Found = 0,
+                    Readings = readings
+                };
+            }
+            
+            return new LocationReadingsDto()
+            {
+                Found = 1,
+                Readings = readings
             };
         }
     }
