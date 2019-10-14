@@ -8,7 +8,7 @@ namespace WeatherStationApi._03_Dtos
         {
            this.Day1 = d1;
            this.Day2 = d2;
-           this.Day3 = d3;
+           this.Day3 = d3; 
         }
 
         public string Day1 { get; set; }
