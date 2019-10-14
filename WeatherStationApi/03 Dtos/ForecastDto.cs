@@ -5,11 +5,11 @@ namespace WeatherStationApi._03_Dtos
     {
         public ForecastDto() { }
         
-        public ForecastDto(string d)
+        public ForecastDto(float d)
         {
            this.Day = d;
         }
 
-        public string Day { get; set; }
+        public float Day { get; set; }
     }
 }

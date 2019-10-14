@@ -5,6 +5,6 @@ namespace WeatherStationApi._04_Interfaces.Services
 {
     public interface IForecastService
     {
-        ForecastDto FetchForecast(int stationId, DateTime Date);
+        ForecastsDto FetchForecast(int stationId, DateTime Date);
     }
 }
