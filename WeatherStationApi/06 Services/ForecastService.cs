@@ -14,12 +14,12 @@ namespace WeatherStationApi._06_Services
 
 
 
-        public double[] FetchForecast(int stationID, DateTime Date)
+        public double[] FetchForecast(int stationID)
         {
 
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= Date.AddDays(-3) && x.StationId == stationID)
+                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-3) && x.StationId == stationID)
                 .GroupBy(x => x.ReadingDateTime.Day)
                 .Select(y => new ForecastDto(
                         y.Average(x => x.Temperature))
