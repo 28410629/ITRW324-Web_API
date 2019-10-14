@@ -124,12 +124,14 @@ namespace WeatherStationApi._06_Services
                     Console.WriteLine(e.Source + " : " + e.Message);
                 }
 
+                
+                double[] forecast = new ForecastService().FetchForecast(stationID: curID);
 
                 //test values for forecasting (stretch goal)
-                newDto.ForecastDay1 = "24.00";
-                newDto.ForecastDay2 = "15.54";
-                newDto.ForecastDay3 = "32.00";
-                newDto.ForecastDay4 = "8.70";
+                newDto.ForecastDay1 = forecast[0].ToString();
+                newDto.ForecastDay2 = forecast[1].ToString();
+                newDto.ForecastDay3 = forecast[2].ToString();
+                newDto.ForecastDay4 = forecast[3].ToString();
                 
                 returnDto.Readings.Add(newDto);
             }
