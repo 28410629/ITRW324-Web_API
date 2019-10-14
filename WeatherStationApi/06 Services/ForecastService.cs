@@ -14,7 +14,7 @@ namespace WeatherStationApi._06_Services
 
 
 
-        public ForecastsDto FetchForecast(int stationID, DateTime Date)
+        public double[] FetchForecast(int stationID, DateTime Date)
         {
 
             var readings =  _readingsRepository
@@ -25,15 +25,28 @@ namespace WeatherStationApi._06_Services
                         y.Average(x => x.Temperature))
                 ).ToList();
 
-            float day1=0f, day2=0f, day3 = 0f;
+            double day1=0f, day2=0f, day3 = 0f;
 
             try { day1 = readings[0].Day; } catch (Exception e) {}
             try { day2 = readings[1].Day; } catch (Exception e) {}
             try { day3 = readings[2].Day; } catch (Exception e) {}
+
+            double[] results = new double[4];
+            double f1 = (day1 + day2*2f + day3*3f)/6f;
+            results[0] = f1;
+            
+            double f2 = (day2 + day3*2f + f1*3f)/6f;
+            results[1] = f2;
+            
+            double f3 = (day3 + f1*2f + f2*3f)/6f;
+            results[2] = f3;
+            
+            double f4 = (f1 + f2*2f + f3*3f)/6f;
+            results[3] = f4;
             
             
             
-            return null;
+            return results;
         }
     }
 }
