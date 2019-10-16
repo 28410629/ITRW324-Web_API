@@ -29,7 +29,7 @@ namespace WeatherStationApi._06_Services
             {
                 day1 = readings[0].Day;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("[  ERR  ] Missing last day's readings for " + StationId + " on three day forecast.");
             }
@@ -38,7 +38,7 @@ namespace WeatherStationApi._06_Services
             {
                 day2 = readings[1].Day;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("[  ERR  ] Missing yesterday's readings for " + StationId + " on three day forecast.");
             }
@@ -47,7 +47,7 @@ namespace WeatherStationApi._06_Services
             {
                 day3 = readings[2].Day;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("[  ERR  ] Missing today's readings for " + StationId + " on three day forecast.");
             }
