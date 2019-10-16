@@ -65,6 +65,8 @@ namespace WeatherStationApi._06_Services
             double f4 = (f1 + f2*2f + f3*3f)/6f;
             results[3] = f4;
             
+            Console.WriteLine("[  OK!  ] Forecast generated successfully for " + StationId + ".");
+            
             return results;
         }
     }
