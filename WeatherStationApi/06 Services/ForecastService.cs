@@ -14,6 +14,7 @@ namespace WeatherStationApi._06_Services
         
         public double[] FetchForecast(int StationId, DateTime Date)
         {
+            Console.WriteLine("[  OK!  ] Getting forecast for station: " + StationId + ".");
             var readings =  _readingsRepository
                 .FetchAll()
                 .Where(x => x.ReadingDateTime >= Date.AddDays(-3) && x.StationId == StationId)
@@ -24,9 +25,32 @@ namespace WeatherStationApi._06_Services
 
             double day1 = 0f, day2 = 0f, day3 = 0f;
 
-            try { day1 = readings[0].Day; } catch (Exception e) {}
-            try { day2 = readings[1].Day; } catch (Exception e) {}
-            try { day3 = readings[2].Day; } catch (Exception e) {}
+            try
+            {
+                day1 = readings[0].Day;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[  ERR  ] Missing last day's readings for " + StationId + " on three day forecast.");
+            }
+
+            try
+            {
+                day2 = readings[1].Day;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[  ERR  ] Missing yesterday's readings for " + StationId + " on three day forecast.");
+            }
+
+            try
+            {
+                day3 = readings[2].Day;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[  ERR  ] Missing today's readings for " + StationId + " on three day forecast.");
+            }
 
             double[] results = new double[4];
             double f1 = (day1 + day2*2f + day3*3f)/6f;
