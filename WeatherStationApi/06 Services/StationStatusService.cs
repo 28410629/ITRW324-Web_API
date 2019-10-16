@@ -24,7 +24,7 @@ namespace WeatherStationApi._06_Services
                 
                 StationStatusDto NewDto = new StationStatusDto();
                 NewDto.StationName = StationId.ToString();
-
+                // get average readings.
                 var AverageReadings = _readingsRepository
                     .FetchHourStation(StationId, Date)
                     .GroupBy(g => g.StationId)
@@ -35,7 +35,6 @@ namespace WeatherStationApi._06_Services
                         g.Average(x => x.AirPressure).ToString(),
                         g.Average(x => x.AmbientLight).ToString())
                     ).ToList();
-
                 try {
                     NewDto.AverageTemp = AverageReadings.First().AverageTemperature;
                 }
@@ -58,7 +57,7 @@ namespace WeatherStationApi._06_Services
                     NewDto.AmbientLight = "0";
                     Console.WriteLine(e.Source + " : " + e.Message);
                 }
-                
+                // get max readings for past day.
                 var MaxReadings = _readingsRepository
                     .FetchDayStation(StationId, Date)
                     .GroupBy(g => g.StationId)
@@ -69,7 +68,6 @@ namespace WeatherStationApi._06_Services
                         g.Max(x => x.AirPressure).ToString(),
                         g.Max(x => x.AmbientLight).ToString())
                     ).ToList();
-
                 try {
                     NewDto.MaxTemp = MaxReadings.First().MaxTemperature;
                 }
@@ -77,7 +75,7 @@ namespace WeatherStationApi._06_Services
                     NewDto.MaxTemp = "0";
                     Console.WriteLine(e.Source + " : " + e.Message);
                 }
-
+                // get min readings for past day.
                 var MinReadings = _readingsRepository
                     .FetchDayStation(StationId, Date)
                     .GroupBy(g => g.StationId)
@@ -88,7 +86,6 @@ namespace WeatherStationApi._06_Services
                         g.Min(x => x.AirPressure).ToString(),
                         g.Min(x => x.AmbientLight).ToString())
                     ).ToList();
-
                 try {
                     NewDto.MinTemp = MinReadings.First().MinTemperature;
                 }
@@ -96,16 +93,12 @@ namespace WeatherStationApi._06_Services
                     NewDto.MinTemp = "0";
                     Console.WriteLine(e.Source + " : " + e.Message);
                 }
-                
                 Console.WriteLine("[  OK!  ] Successfully got status for " + StationId + ", getting forecast.");
-                
-                double[] forecast = new ForecastService().FetchForecast(StationId, Date);
-                
-                NewDto.ForecastDay1 = forecast[0].ToString();
-                NewDto.ForecastDay2 = forecast[1].ToString();
-                NewDto.ForecastDay3 = forecast[2].ToString();
-                NewDto.ForecastDay4 = forecast[3].ToString();
-                
+                double[] Forecast = new ForecastService().FetchForecast(StationId, Date);
+                NewDto.ForecastDay1 = Forecast[0].ToString();
+                NewDto.ForecastDay2 = Forecast[1].ToString();
+                NewDto.ForecastDay3 = Forecast[2].ToString();
+                NewDto.ForecastDay4 = Forecast[3].ToString();
                 ReturnDto.Readings.Add(NewDto);
             }
 
