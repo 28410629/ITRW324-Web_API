@@ -11,15 +11,16 @@ namespace WeatherStationApi._06_Services
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
 
+        // fetch all readings from the database.
         public FetchReadingsDto FetchReadings()
         {
-            var readings =  _readingsRepository
+            var Readings =  _readingsRepository
                 .FetchAll()
                 .Select(x => new FetchReadingDto(x.StationId, x.Temperature, x.Humidity, x.AirPressure, x.AmbientLight, x.ReadingDateTime));
 
             return new FetchReadingsDto
             {
-                Readings = readings.ToList()
+                Readings = Readings.ToList()
             };
         }
     }

@@ -12,6 +12,7 @@ namespace WeatherStationApi._06_Services
         private static DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
 
+        // writes a new station reading to the database and commits.
         public void CreateNewReading(ReadingDto reading)
         {
             _readingsRepository.Add(new Reading()

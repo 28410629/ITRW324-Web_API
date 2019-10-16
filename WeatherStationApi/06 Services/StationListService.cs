@@ -11,9 +11,10 @@ namespace WeatherStationApi._06_Services
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IStationsRepository __stationRepository = new StationsRepository(_factory);
         
+        // fetch a list of all currently recorded stations and their details.
         public StationListsDto FetchStations()
         {
-            var readings =  __stationRepository
+            var Readings =  __stationRepository
                 .FetchAll()
                 .OrderBy(y => y.StationId)
                 .Select(x => new StationListDto(
@@ -25,7 +26,7 @@ namespace WeatherStationApi._06_Services
 
             return new StationListsDto
             {
-                Stations = readings.ToList()
+                Stations = Readings.ToList()
             };
         }
     }

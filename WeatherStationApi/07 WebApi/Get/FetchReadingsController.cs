@@ -10,6 +10,7 @@ namespace WeatherStationApi._07_WebApi.Get
     {
         private readonly IFetchReadingsService _service = new FetchReadingsService();
 
+        // fetches all readings from the database and return a json with information.
         [HttpGet]
         public IActionResult GetReadings()
         {

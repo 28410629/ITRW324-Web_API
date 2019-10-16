@@ -3,11 +3,12 @@ using WeatherStationApi._03_Dtos;
 
 namespace WeatherStationApi._04_Interfaces.Services
 {
+    // explicitly states methods for RawReadingsDto.
     public interface ILocationReadingsService
     {
-        LocationReadingsDto FetchLocationDetailDay(string province, string city, DateTime Date);
-        LocationReadingsDto FetchLocationDetailWeek(string province, string city, DateTime Date);
-        LocationReadingsDto FetchLocationDetailMonth(string province, string city, DateTime Date);
-        LocationReadingsDto FetchLocationDetailYear(string province, string city, DateTime Date);
+        LocationReadingsDto FetchLocationDetailDay(string Province, string City, DateTime Date);
+        LocationReadingsDto FetchLocationDetailWeek(string Province, string City, DateTime Date);
+        LocationReadingsDto FetchLocationDetailMonth(string Province, string City, DateTime Date);
+        LocationReadingsDto FetchLocationDetailYear(string Province, string ciCityty, DateTime Date);
     }
 }

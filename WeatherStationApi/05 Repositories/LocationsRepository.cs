@@ -7,6 +7,5 @@ namespace WeatherStationApi._05_Repositories
     {
         public LocationsRepository(DataContextFactory factory) : base(factory)
         { }
-
     }
 }
