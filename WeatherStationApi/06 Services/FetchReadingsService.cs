@@ -8,9 +8,11 @@ namespace WeatherStationApi._06_Services
 {
     public class FetchReadingsService : IFetchReadingsService
     {
+        
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
 
+        // fetch all readings from the database.
         public FetchReadingsDto FetchReadings()
         {
             var readings =  _readingsRepository
