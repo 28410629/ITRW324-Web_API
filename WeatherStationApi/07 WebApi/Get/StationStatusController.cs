@@ -11,6 +11,7 @@ namespace WeatherStationApi._07_WebApi.Get
     {
         private readonly IStationStatusService _service = new StationStatusService();
         
+        // returns a json containing the status for specified stations.
         [Route("station")]
         [HttpGet]
         public IActionResult FetchStationStatus(string StationIds, DateTime Date)

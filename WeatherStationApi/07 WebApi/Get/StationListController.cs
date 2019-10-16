@@ -10,6 +10,7 @@ namespace WeatherStationApi._07_WebApi.Get
     {
         private readonly IStationListService _service = new StationListService();
         
+        // returns a json containing all registered stations on the system.
         [Route("all")]
         [HttpGet]
         public IActionResult FetchStations()

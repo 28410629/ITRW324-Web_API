@@ -5,13 +5,14 @@ using WeatherStationApi._06_Services;
 
 namespace WeatherStationApi._07_WebApi.Get
 {
+    // gets the raw readings from the database for a period and returns the information as a json.
     [Route("api/get/rawreadings")]
     [ApiController]
     public class RawReadingsController : ControllerBase
     {
         private readonly IRawReadingsService _service = new RawReadingsService();
         
-        // /api/get/rawreadings/station/day?StationId=
+        // last day period.
         [Route("station/day")]
         [HttpGet]
         public IActionResult FetchRawDayAStationReadings(int StationId, DateTime Date)
@@ -21,7 +22,7 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        // /api/get/rawreadings/station/week?StationId=
+        // last week period.
         [Route("station/week")]
         [HttpGet]
         public IActionResult FetchRawWeekAStationReadings(int StationId, DateTime Date)
@@ -31,7 +32,7 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
 
-        // /api/get/rawreadings/station/month?StationId=
+        // last month period.
         [Route("station/month")]
         [HttpGet]
         public IActionResult FetchRawMonthAStationReadings(int StationId, DateTime Date)
@@ -41,7 +42,7 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        // /api/get/rawreadings/station/year?StationId=
+        // last year period.
         [Route("station/year")]
         [HttpGet]
         public IActionResult FetchRawYearAStationReadings(int StationId, DateTime Date)
