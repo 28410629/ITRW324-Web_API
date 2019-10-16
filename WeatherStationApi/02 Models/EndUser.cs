@@ -4,6 +4,7 @@ namespace WeatherStationApi._02_Models
 {
     public class EndUser
     {
+        // attributes
         public int UserId { get; set; }
         
         public string FirstName { get; set; }
@@ -16,8 +17,7 @@ namespace WeatherStationApi._02_Models
         
         public string Password { get; set; }
         
-        // Relation
-        
+        // relation
         public ICollection<Station> Stations { get; set; }
     }
 }

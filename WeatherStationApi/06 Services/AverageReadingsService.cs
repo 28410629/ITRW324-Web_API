@@ -12,6 +12,7 @@ namespace WeatherStationApi._06_Services
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
         
+        // fetch average readings for past day from all stations.
         public AverageReadingsDto FetchAverageDayAllStationsReadings()
         {
             var readings =  _readingsRepository
@@ -25,13 +26,13 @@ namespace WeatherStationApi._06_Services
                     g.Average(x => x.AirPressure).ToString(), 
                     g.Average(x => x.AmbientLight).ToString())
                 );
-
             return new AverageReadingsDto()
             {
                 AverageReadings = readings.ToList()
             };
         }
         
+        // fetch average readings for past week from all stations.
         public AverageReadingsDto FetchAverageWeekAllStationsReadings()
         {
             var readings =  _readingsRepository
@@ -45,14 +46,13 @@ namespace WeatherStationApi._06_Services
                     g.Average(x => x.AirPressure).ToString(), 
                     g.Average(x => x.AmbientLight).ToString())
                 );
-
-
             return new AverageReadingsDto()
             {
                 AverageReadings = readings.ToList()
             };
         }
 
+        // fetch average readings for past month from all stations.
         public AverageReadingsDto FetchAverageMonthAllStationsReadings()
         {
             var readings =  _readingsRepository
@@ -66,14 +66,13 @@ namespace WeatherStationApi._06_Services
                     g.Average(x => x.AirPressure).ToString(), 
                     g.Average(x => x.AmbientLight).ToString())
                 );
-
-
             return new AverageReadingsDto()
             {
                 AverageReadings = readings.ToList()
             };
         }
         
+        // fetch average readings for past day from specific station.
         public AverageReadingsDto FetchAverageDayAStationReadings(int StationId)
         {
             var readings =  _readingsRepository
@@ -87,14 +86,13 @@ namespace WeatherStationApi._06_Services
                     g.Average(x => x.AirPressure).ToString(), 
                     g.Average(x => x.AmbientLight).ToString())
                 );
-
-
             return new AverageReadingsDto()
             {
                 AverageReadings = readings.ToList()
             };
         }
         
+        // fetch average readings for past week from specific station.
         public AverageReadingsDto FetchAverageWeekAStationReadings(int StationId)
         {
             var readings =  _readingsRepository
@@ -108,14 +106,13 @@ namespace WeatherStationApi._06_Services
                     g.Average(x => x.AirPressure).ToString(), 
                     g.Average(x => x.AmbientLight).ToString())
                 );
-
-
             return new AverageReadingsDto()
             {
                 AverageReadings = readings.ToList()
             };
         }
         
+        // fetch average readings for past month from specific station.
         public AverageReadingsDto FetchAverageMonthAStationReadings(int StationId)
         {
             var readings =  _readingsRepository
@@ -129,8 +126,6 @@ namespace WeatherStationApi._06_Services
                     g.Average(x => x.AirPressure).ToString(), 
                     g.Average(x => x.AmbientLight).ToString())
                 );
-
-
             return new AverageReadingsDto()
             {
                 AverageReadings = readings.ToList()

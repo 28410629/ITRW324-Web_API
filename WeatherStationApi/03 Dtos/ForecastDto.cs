@@ -7,7 +7,7 @@ namespace WeatherStationApi._03_Dtos
         
         public ForecastDto(double d)
         {
-           this.Day = d;
+           Day = d;
         }
 
         public double Day { get; set; }

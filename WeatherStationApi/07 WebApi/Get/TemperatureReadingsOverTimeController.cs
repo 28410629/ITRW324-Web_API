@@ -9,7 +9,7 @@ namespace WeatherStationApi._07_WebApi.Get
     [ApiController]
     public class TemperatureReadingsOverTimeController
     {
-        private readonly ITemperatureReadingOverTimeService _service = new TemperatureReadingsOverTimeService();
+        private readonly IStationDetailService _service = new StationDetailService();
         
         // /api/get/temperaturereadingsovertime/station/day?StationId= &Date=
         [Route("station/day")]
