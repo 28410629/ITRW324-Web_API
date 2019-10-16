@@ -1,1 +1,34 @@
- 
+```
+/api
+    /delete
+    /get
+        /readings
+        /locationreadings
+            /location
+                /day?Province= &City= &Date=
+                /week?Province= &City= &Date=
+                /month?Province= &City= &Date=
+                /year?Province= &City= &Date=
+        /rawreadings
+            /station
+                /day?StationId= &Date=
+                /week?StationId= &Date=
+                /month?StationId= &Date=
+                /year?StationId= &Date=
+        /stationlist
+            /all
+        /stationstatus
+            /station?StationIds= &Date=
+        /stationdetail
+            /station
+                /day?StationId= &Date=
+                /week?StationId= &Date=
+                /month?StationId= &Date=
+                /year?StationId= &Date=
+        /forecast
+            /station
+                /4day?StationId= &Date=
+    /post
+        /reading
+    /put
+``` 

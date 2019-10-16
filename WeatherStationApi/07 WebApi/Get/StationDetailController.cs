@@ -5,13 +5,12 @@ using WeatherStationApi._06_Services;
 
 namespace WeatherStationApi._07_WebApi.Get
 {
-    [Route("api/get/temperaturereadingsovertime")]
+    [Route("api/get/stationdetail")]
     [ApiController]
-    public class TemperatureReadingsOverTimeController
+    public class StationDetailController
     {
         private readonly IStationDetailService _service = new StationDetailService();
         
-        // /api/get/temperaturereadingsovertime/station/day?StationId= &Date=
         [Route("station/day")]
         [HttpGet]
         public IActionResult FetchStationDayTemperatureReadingsOverTime(int StationId, DateTime Date)
@@ -21,7 +20,6 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        // /api/get/temperaturereadingsovertime/station/week?StationId= &Date=
         [Route("station/week")]
         [HttpGet]
         public IActionResult FetchStationWeekTemperatureReadingsOverTime(int StationId, DateTime Date)
@@ -30,8 +28,7 @@ namespace WeatherStationApi._07_WebApi.Get
 
             return new JsonResult(answer);
         }
-
-        // /api/get/temperaturereadingsovertime/station/month?StationId= &Date=
+        
         [Route("station/month")]
         [HttpGet]
         public IActionResult FetchStationMonthTemperatureReadingsOverTime(int StationId, DateTime Date)
@@ -41,7 +38,6 @@ namespace WeatherStationApi._07_WebApi.Get
             return new JsonResult(answer);
         }
         
-        // /api/get/temperaturereadingsovertime/station/year?StationId= &Date=
         [Route("station/year")]
         [HttpGet]
         public IActionResult FetchStationYearTemperatureReadingsOverTime(int StationId, DateTime Date)

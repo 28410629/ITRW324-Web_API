@@ -23,34 +23,24 @@ namespace WeatherStationApi._03_Dtos
 
         }
 
-        [JsonProperty("StationName")]
         public string StationName { get; set; }
-
-        [JsonProperty("AverageTemp")]
+        
         public string AverageTemp { get; set; }
-
-        [JsonProperty("MaxTemp")]
+        
         public string MaxTemp { get; set; }
-
-        [JsonProperty("MinTemp")]
+        
         public string MinTemp { get; set; }
-
-        [JsonProperty("AmbientLight")]
+        
         public string AmbientLight { get; set; }
         
-        [JsonProperty("Humidity")]
         public string Humidity { get; set; }
         
-        [JsonProperty("ForecastDay1")]
         public string ForecastDay1 { get; set; }
         
-        [JsonProperty("ForecastDay2")]
         public string ForecastDay2 { get; set; }
         
-        [JsonProperty("ForecastDay3")]
         public string ForecastDay3 { get; set; }
         
-        [JsonProperty("ForecastDay4")]
         public string ForecastDay4 { get; set; }
     }
 }

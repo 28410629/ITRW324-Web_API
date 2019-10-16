@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using WeatherStationApi._04_Interfaces.Services;
 using WeatherStationApi._06_Services;
@@ -12,9 +13,9 @@ namespace WeatherStationApi._07_WebApi.Get
         
         [Route("station")]
         [HttpGet]
-        public IActionResult FetchStationStatus(string StationIds)
+        public IActionResult FetchStationStatus(string StationIds, DateTime Date)
         {
-            var answer = _service.FetchStationStatus(StationIds);
+            var answer = _service.FetchStationStatus(StationIds, Date);
 
             return new JsonResult(answer);
         }
