@@ -14,7 +14,6 @@ namespace WeatherStationApi._02_Models
         public string NickName { get; set; }
         
         // relation
-        public EndUser EndUser { get; set; }
         
         public Location Location { get; set; }
         
