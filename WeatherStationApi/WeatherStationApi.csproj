@@ -27,7 +27,6 @@
     <Folder Include="01 Common\" />
     <Folder Include="07 WebApi\Delete" />
     <Folder Include="07 WebApi\Put" />
-    <Folder Include="08 Tests\" />
   </ItemGroup>
 
   <ItemGroup>
