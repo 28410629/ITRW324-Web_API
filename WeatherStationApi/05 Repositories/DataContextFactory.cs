@@ -6,6 +6,7 @@ namespace WeatherStationApi._05_Repositories
     {
         private WeatherStationDbContext _context;
 
+        // get context to make queries with.
         public WeatherStationDbContext Entities
         {
             get
@@ -14,7 +15,6 @@ namespace WeatherStationApi._05_Repositories
                 {
                     _context = new WeatherStationDbContext();
                 }
-
                 return _context;
             }
         }
