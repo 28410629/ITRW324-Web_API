@@ -5,9 +5,9 @@ namespace WeatherStationApi._04_Interfaces.Services
 {
     public interface ILocationReadingsService
     {
-        LocationReadingsDto FetchLocationDetailDay(string province, string city, DateTime Date);
-        LocationReadingsDto FetchLocationDetailWeek(string province, string city, DateTime Date);
-        LocationReadingsDto FetchLocationDetailMonth(string province, string city, DateTime Date);
-        LocationReadingsDto FetchLocationDetailYear(string province, string city, DateTime Date);
+        LocationReadingsDto FetchLocationDetailDay(string Province, string City, DateTime Date);
+        LocationReadingsDto FetchLocationDetailWeek(string Province, string City, DateTime Date);
+        LocationReadingsDto FetchLocationDetailMonth(string Province, string City, DateTime Date);
+        LocationReadingsDto FetchLocationDetailYear(string Province, string ciCityty, DateTime Date);
     }
 }
