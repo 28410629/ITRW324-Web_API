@@ -34,9 +34,7 @@ namespace WeatherStationApi._06_Services
                     y.Max(x => x.AmbientLight),
                     new DateTime(y.Key.Year, y.Key.Month, y.Key.Day, y.Key.Hour, 0, 0))
                 ).ToList();
-
             Readings = AddZeroEntries<LocationReadingDto>.AddHourZeroEntries(Readings);
-
             if (Readings.Count == 0)
             {
                 return new LocationReadingsDto()
@@ -45,7 +43,6 @@ namespace WeatherStationApi._06_Services
                     Readings = Readings
                 };
             }
-            
             return new LocationReadingsDto()
             {
                 Found = 1,
@@ -74,9 +71,7 @@ namespace WeatherStationApi._06_Services
                     y.Max(x => x.AmbientLight),
                     y.Key)
                 ).ToList();
-            
             Readings = AddZeroEntries<LocationReadingDto>.AddDayZeroEntries(Readings);
-
             if (Readings.Count == 0)
             {
                 return new LocationReadingsDto()
@@ -85,7 +80,6 @@ namespace WeatherStationApi._06_Services
                     Readings = Readings
                 };
             }
-            
             return new LocationReadingsDto()
             {
                 Found = 1,
@@ -114,9 +108,7 @@ namespace WeatherStationApi._06_Services
                     y.Max(x => x.AmbientLight),
                     y.Key)
                 ).ToList();
-            
             Readings = AddZeroEntries<LocationReadingDto>.AddDayZeroEntries(Readings);
-
             if (Readings.Count == 0)
             {
                 return new LocationReadingsDto()
@@ -125,7 +117,6 @@ namespace WeatherStationApi._06_Services
                     Readings = Readings
                 };
             }
-            
             return new LocationReadingsDto()
             {
                 Found = 1,
@@ -154,9 +145,7 @@ namespace WeatherStationApi._06_Services
                     y.Max(x => x.AmbientLight),
                     new DateTime(y.Key.Year, y.Key.Month, 1))
                 ).ToList();
-            
             Readings = AddZeroEntries<LocationReadingDto>.AddMonthZeroEntries(Readings);
-
             if (Readings.Count == 0)
             {
                 return new LocationReadingsDto()
@@ -165,7 +154,6 @@ namespace WeatherStationApi._06_Services
                     Readings = Readings
                 };
             }
-            
             return new LocationReadingsDto()
             {
                 Found = 1,
