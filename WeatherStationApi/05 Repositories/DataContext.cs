@@ -27,7 +27,6 @@ namespace WeatherStationApi._05_Repositories
                {
                    optionsBuilder.UseMySql("server=localhost;database=WeatherDB;user=weather;password=Olideadsykes1;");
                }
-               
             }
             catch (System.Exception)
             {
@@ -99,7 +98,6 @@ namespace WeatherStationApi._05_Repositories
                     .WithMany(p => p.Stations)
                     .HasForeignKey(d => d.LocationId);
             });
-            
         }
     }
 }
