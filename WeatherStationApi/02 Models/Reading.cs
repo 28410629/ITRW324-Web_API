@@ -5,6 +5,7 @@ namespace WeatherStationApi._02_Models
 {
     public class Reading
     {
+        // attributes
         public int ReadingId { get; set; }
         
         public int StationId { get; set; }
@@ -19,8 +20,7 @@ namespace WeatherStationApi._02_Models
         
         public double AmbientLight { get; set; }
         
-        // Relation
-        
+        // relation
         public Station Station { get; set; }
     }
 }

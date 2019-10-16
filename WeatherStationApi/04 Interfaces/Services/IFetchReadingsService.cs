@@ -4,6 +4,6 @@ namespace WeatherStationApi._04_Interfaces.Services
 {
     public interface IFetchReadingsService
     {
-        ReadingsDto FetchReadings();
+        FetchReadingsDto FetchReadings();
     }
 }

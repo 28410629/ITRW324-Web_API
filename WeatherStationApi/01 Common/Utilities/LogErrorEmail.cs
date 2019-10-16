@@ -11,40 +11,42 @@ namespace WeatherStationApi._01_Common.Utilities
         private static string _message;
         private static string _stackTrace;
 
+        // parses the exception and start a new thread to send the error via email.
         public static void SendError(Exception e)
         {
-            Console.WriteLine("[ OK  ] LogErrorEmail: Sending exception occured email.");
+            Console.WriteLine("[ OK! ] LogErrorEmail: Sending exception occured email.");
             _message = e.Message;
             _source = e.Source;
             _stackTrace = e.StackTrace;
-            Thread thread = new Thread(new ThreadStart(SendError));
+            Thread thread = new Thread(SendError);
             thread.Start();
         }
         
+        // test email via new thread.
         public static void SendErrorTest()
         {
-            Console.WriteLine("[ OK  ] LogErrorEmail: Sending test email.");
+            Console.WriteLine("[ OK! ] LogErrorEmail: Sending test email.");
             _message = "This is the exception's message.";
             _source = "This is the exception's source.";
             _stackTrace = "This is the exception's stacktrace.";
-            Thread thread = new Thread(new ThreadStart(SendError));
+            Thread thread = new Thread(SendError);
             thread.Start();
         }
 
+        // create mail message and send via smtp client.
         private static void SendError()
         {
-            
             try
             {
                 using (var mailMessage = new MailMessage())
                 {
                     using (var client = new SmtpClient("smtp.gmail.com", 587))
                     {
-                        //provide credentials
+                        // provide credentials.
                         client.Credentials = new NetworkCredential("itrw324.weatherstationapi@gmail.com", "VUarH4vsNk6DTCzy");
                         client.EnableSsl = true;
 
-                        // configure the mail message
+                        // configure the mail message.
                         mailMessage.From = new MailAddress("itrw324.weatherstationapi@gmail.com");
                         mailMessage.To.Insert(0, new MailAddress("coen.human@gmail.com"));
                         mailMessage.To.Insert(1, new MailAddress("morneventer.mv@gmail.com"));
@@ -59,9 +61,9 @@ namespace WeatherStationApi._01_Common.Utilities
                                            _stackTrace +
                                            "\n\n-------------------------------------------FIN-------------------------------------------";
 
-                        //send email
+                        // send email.
                         client.Send(mailMessage);
-                        Console.WriteLine("[ OK  ] LogErrorEmail: Email sent.");
+                        Console.WriteLine("[ OK! ] LogErrorEmail: Email sent.");
                     }
                 }
             }

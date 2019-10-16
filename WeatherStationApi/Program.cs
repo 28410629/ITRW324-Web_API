@@ -30,7 +30,7 @@ namespace WeatherStationApi
                     options.Listen(IPAddress.Any, 5000);
                     options.Listen(IPAddress.Any, 5001, listenOptions =>
                     {
-                        listenOptions.UseHttps("certificate.pfx","Olideadsykes1");
+                        listenOptions.UseHttps("certificate.pfx","QNeCaZ8BYt4ghwU7");
                     });
                 });
 

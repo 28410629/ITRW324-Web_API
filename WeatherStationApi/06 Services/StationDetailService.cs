@@ -8,17 +8,18 @@ using WeatherStationApi._05_Repositories;
 
 namespace WeatherStationApi._06_Services
 {
-    public class LocationReadingsService : ILocationReadingsService
+    public class StationDetailService : IStationDetailService
     {
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
-        
-        public LocationReadingsDto FetchLocationDetailDay(string Province, string City, DateTime Date)
+
+        public StationDetailDays FetchStationDetailDay(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchDayLocation(Province, City, Date)
+                .FetchDayStation(StationId, Date)
                 .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month, y.ReadingDateTime.Day, y.ReadingDateTime.Hour})
-                .Select(y => new LocationReadingDto(
+                .Select(y => new StationDetailDay(
+                    StationId,
                     y.Average(x => x.Temperature),
                     y.Min(x => x.Temperature),
                     y.Max(x => x.Temperature),
@@ -34,30 +35,21 @@ namespace WeatherStationApi._06_Services
                     new DateTime(y.Key.Year, y.Key.Month, y.Key.Day, y.Key.Hour, 0, 0))
                 ).ToList();
 
-            readings = AddZeroEntries<LocationReadingDto>.AddHourZeroEntries(readings);
-
-            if (readings.Count == 0)
-            {
-                return new LocationReadingsDto()
-                {
-                    Found = 0,
-                    Readings = readings
-                };
-            }
+            readings = AddZeroEntries<StationDetailDay>.AddHourZeroEntries(readings);
             
-            return new LocationReadingsDto()
+            return new StationDetailDays()
             {
-                Found = 1,
-                Readings = readings
+                StationDetails = readings
             };
         }
 
-        public LocationReadingsDto FetchLocationDetailWeek(string Province, string City, DateTime Date)
+        public StationDetailDays FetchStationDetailWeek(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchWeekLocation(Province, City, Date)
+                .FetchWeekStation(StationId, Date)
                 .GroupBy(y => y.ReadingDateTime.Date)
-                .Select(y => new LocationReadingDto(
+                .Select(y => new StationDetailDay(
+                    StationId,
                     y.Average(x => x.Temperature),
                     y.Min(x => x.Temperature),
                     y.Max(x => x.Temperature),
@@ -73,30 +65,21 @@ namespace WeatherStationApi._06_Services
                     y.Key)
                 ).ToList();
             
-            readings = AddZeroEntries<LocationReadingDto>.AddDayZeroEntries(readings);
+            readings = AddZeroEntries<StationDetailDay>.AddDayZeroEntries(readings);
 
-            if (readings.Count == 0)
+            return new StationDetailDays()
             {
-                return new LocationReadingsDto()
-                {
-                    Found = 0,
-                    Readings = readings
-                };
-            }
-            
-            return new LocationReadingsDto()
-            {
-                Found = 1,
-                Readings = readings
+                StationDetails = readings
             };
         }
 
-        public LocationReadingsDto FetchLocationDetailMonth(string Province, string City, DateTime Date)
+        public StationDetailDays FetchStationDetailMonth(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchMonthLocation(Province, City, Date)
+                .FetchMonthStation(StationId, Date)
                 .GroupBy(y => y.ReadingDateTime.Date)
-                .Select(y => new LocationReadingDto(
+                .Select(y => new StationDetailDay(
+                    StationId,
                     y.Average(x => x.Temperature),
                     y.Min(x => x.Temperature),
                     y.Max(x => x.Temperature),
@@ -111,31 +94,22 @@ namespace WeatherStationApi._06_Services
                     y.Max(x => x.AmbientLight),
                     y.Key)
                 ).ToList();
-            
-            readings = AddZeroEntries<LocationReadingDto>.AddDayZeroEntries(readings);
 
-            if (readings.Count == 0)
-            {
-                return new LocationReadingsDto()
-                {
-                    Found = 0,
-                    Readings = readings
-                };
-            }
+            readings = AddZeroEntries<StationDetailDay>.AddDayZeroEntries(readings);
             
-            return new LocationReadingsDto()
+            return new StationDetailDays()
             {
-                Found = 1,
-                Readings = readings
+                StationDetails = readings
             };
         }
         
-        public LocationReadingsDto FetchLocationDetailYear(string Province, string City, DateTime Date)
+        public StationDetailDays FetchStationDetailYear(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchYearLocation(Province, City, Date)
+                .FetchYearStation(StationId, Date)
                 .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month})
-                .Select(y => new LocationReadingDto(
+                .Select(y => new StationDetailDay(
+                    StationId,
                     y.Average(x => x.Temperature),
                     y.Min(x => x.Temperature),
                     y.Max(x => x.Temperature),
@@ -151,21 +125,11 @@ namespace WeatherStationApi._06_Services
                     new DateTime(y.Key.Year, y.Key.Month, 1))
                 ).ToList();
             
-            readings = AddZeroEntries<LocationReadingDto>.AddMonthZeroEntries(readings);
+            readings = AddZeroEntries<StationDetailDay>.AddMonthZeroEntries(readings);
 
-            if (readings.Count == 0)
+            return new StationDetailDays()
             {
-                return new LocationReadingsDto()
-                {
-                    Found = 0,
-                    Readings = readings
-                };
-            }
-            
-            return new LocationReadingsDto()
-            {
-                Found = 1,
-                Readings = readings
+                StationDetails = readings
             };
         }
     }

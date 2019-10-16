@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using WeatherStationApi._04_Interfaces.Services;
 using WeatherStationApi._06_Services;
@@ -13,9 +14,9 @@ namespace WeatherStationApi._07_WebApi.Get
         // /api/get/rawreadings/station/day?StationId=
         [Route("station/day")]
         [HttpGet]
-        public IActionResult FetchRawDayAStationReadings(int StationId)
+        public IActionResult FetchRawDayAStationReadings(int StationId, DateTime Date)
         {
-            var answer = _service.FetchRawDayAStationReadings(StationId);
+            var answer = _service.FetchRawDayAStationReadings(StationId, Date);
 
             return new JsonResult(answer);
         }
@@ -23,9 +24,9 @@ namespace WeatherStationApi._07_WebApi.Get
         // /api/get/rawreadings/station/week?StationId=
         [Route("station/week")]
         [HttpGet]
-        public IActionResult FetchRawWeekAStationReadings(int StationId)
+        public IActionResult FetchRawWeekAStationReadings(int StationId, DateTime Date)
         {
-            var answer = _service.FetchRawWeekAStationReadings(StationId);
+            var answer = _service.FetchRawWeekAStationReadings(StationId, Date);
 
             return new JsonResult(answer);
         }
@@ -33,9 +34,9 @@ namespace WeatherStationApi._07_WebApi.Get
         // /api/get/rawreadings/station/month?StationId=
         [Route("station/month")]
         [HttpGet]
-        public IActionResult FetchRawMonthAStationReadings(int StationId)
+        public IActionResult FetchRawMonthAStationReadings(int StationId, DateTime Date)
         {
-            var answer = _service.FetchRawMonthAStationReadings(StationId);
+            var answer = _service.FetchRawMonthAStationReadings(StationId, Date);
 
             return new JsonResult(answer);
         }
@@ -43,9 +44,9 @@ namespace WeatherStationApi._07_WebApi.Get
         // /api/get/rawreadings/station/year?StationId=
         [Route("station/year")]
         [HttpGet]
-        public IActionResult FetchRawYearAStationReadings(int StationId)
+        public IActionResult FetchRawYearAStationReadings(int StationId, DateTime Date)
         {
-            var answer = _service.FetchRawYearAStationReadings(StationId);
+            var answer = _service.FetchRawYearAStationReadings(StationId, Date);
 
             return new JsonResult(answer);
         }

@@ -1,15 +1,19 @@
 
+using System;
+
 namespace WeatherStationApi._03_Dtos
 {
     public class ForecastDto
     {
         public ForecastDto() { }
         
-        public ForecastDto(double d)
+        public ForecastDto(double d, int ReadingDay)
         {
-           this.Day = d;
+           Day = d;
+           this.ReadingDay = ReadingDay;
         }
 
         public double Day { get; set; }
+        public int ReadingDay { get; set; }
     }
 }
