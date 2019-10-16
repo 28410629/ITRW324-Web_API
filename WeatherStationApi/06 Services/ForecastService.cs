@@ -11,21 +11,18 @@ namespace WeatherStationApi._06_Services
     {
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
-
-
-
-        public double[] FetchForecast(int stationID)
+        
+        public double[] FetchForecast(int StationId, DateTime Date)
         {
-
             var readings =  _readingsRepository
                 .FetchAll()
-                .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-3) && x.StationId == stationID)
+                .Where(x => x.ReadingDateTime >= Date.AddDays(-3) && x.StationId == StationId)
                 .GroupBy(x => x.ReadingDateTime.Day)
-                .Select(y => new ForecastDto(
-                        y.Average(x => x.Temperature))
-                ).ToList();
+                .Select(y => new ForecastDto(y.Average(x => x.Temperature)))
+                .OrderBy(o => o.Day)
+                .ToList();
 
-            double day1=0f, day2=0f, day3 = 0f;
+            double day1 = 0f, day2 = 0f, day3 = 0f;
 
             try { day1 = readings[0].Day; } catch (Exception e) {}
             try { day2 = readings[1].Day; } catch (Exception e) {}
@@ -43,8 +40,6 @@ namespace WeatherStationApi._06_Services
             
             double f4 = (f1 + f2*2f + f3*3f)/6f;
             results[3] = f4;
-            
-            
             
             return results;
         }

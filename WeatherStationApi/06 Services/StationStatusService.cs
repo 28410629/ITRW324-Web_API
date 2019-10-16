@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using WeatherStationApi._03_Dtos;
 using WeatherStationApi._04_Interfaces.Repositories;
@@ -13,23 +12,20 @@ namespace WeatherStationApi._06_Services
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
 
-        public StationsStatusesDto FetchStationStatus(string StationIds)
+        public StationsStatusesDto FetchStationStatus(string StringStationIds, DateTime Date)
         {
-            //init
             StationsStatusesDto returnDto = new StationsStatusesDto();
-            string[] listIDs = StationIds.Split('-');
-
-
-            foreach (var sID in listIDs)
+            string[] ListOfStationIds = StringStationIds.Split('-');
+            
+            foreach (var StringStationId in ListOfStationIds)
             {
-                int curID = Convert.ToInt32(sID);
+                int StationId = Convert.ToInt32(StringStationId);
                 
                 StationStatusDto newDto = new StationStatusDto();
-                newDto.StationName = curID.ToString();
+                newDto.StationName = StationId.ToString();
 
-                var avg_Readings = _readingsRepository
-                    .FetchAll()
-                    .Where(x => x.ReadingDateTime >= DateTime.Now.AddHours(-1) && x.StationId == curID)
+                var AverageReadings = _readingsRepository
+                    .FetchHourStation(StationId, Date)
                     .GroupBy(g => g.StationId)
                     .Select(g => new AverageReadingDto(
                         g.Key,
@@ -37,10 +33,7 @@ namespace WeatherStationApi._06_Services
                         g.Average(x => x.Humidity).ToString(),
                         g.Average(x => x.AirPressure).ToString(),
                         g.Average(x => x.AmbientLight).ToString())
-                    );
-
-
-                var AverageReadings = avg_Readings.ToList();
+                    ).ToList();
 
                 try
                 {
@@ -71,11 +64,9 @@ namespace WeatherStationApi._06_Services
                     newDto.AmbientLight = "0";
                     Console.WriteLine(e.Source + " : " + e.Message);
                 }
-
-
-                var max_readings = _readingsRepository
-                    .FetchAll()
-                    .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == curID)
+                
+                var MaxReadings = _readingsRepository
+                    .FetchDayStation(StationId, Date)
                     .GroupBy(g => g.StationId)
                     .Select(g => new MaxReadingDto(
                         g.Key,
@@ -83,11 +74,7 @@ namespace WeatherStationApi._06_Services
                         g.Max(x => x.Humidity).ToString(),
                         g.Max(x => x.AirPressure).ToString(),
                         g.Max(x => x.AmbientLight).ToString())
-                    );
-
-
-
-                var MaxReadings = max_readings.ToList();
+                    ).ToList();
 
                 try
                 {
@@ -99,9 +86,8 @@ namespace WeatherStationApi._06_Services
                     Console.WriteLine(e.Source + " : " + e.Message);
                 }
 
-                var min_readings = _readingsRepository
-                    .FetchAll()
-                    .Where(x => x.ReadingDateTime >= DateTime.Now.AddDays(-1) && x.StationId == curID)
+                var MinReadings = _readingsRepository
+                    .FetchDayStation(StationId, Date)
                     .GroupBy(g => g.StationId)
                     .Select(g => new MinReadingDto(
                         g.Key,
@@ -109,10 +95,7 @@ namespace WeatherStationApi._06_Services
                         g.Min(x => x.Humidity).ToString(),
                         g.Min(x => x.AirPressure).ToString(),
                         g.Min(x => x.AmbientLight).ToString())
-                    );
-
-
-                var MinReadings = min_readings.ToList();
+                    ).ToList();
 
                 try
                 {
@@ -123,11 +106,9 @@ namespace WeatherStationApi._06_Services
                     newDto.MinTemp = "0";
                     Console.WriteLine(e.Source + " : " + e.Message);
                 }
-
                 
-                double[] forecast = new ForecastService().FetchForecast(stationID: curID);
-
-                //test values for forecasting (stretch goal)
+                double[] forecast = new ForecastService().FetchForecast(StationId, Date);
+                
                 newDto.ForecastDay1 = forecast[0].ToString();
                 newDto.ForecastDay2 = forecast[1].ToString();
                 newDto.ForecastDay3 = forecast[2].ToString();
@@ -135,7 +116,6 @@ namespace WeatherStationApi._06_Services
                 
                 returnDto.Readings.Add(newDto);
             }
-            
 
             return returnDto;
         }

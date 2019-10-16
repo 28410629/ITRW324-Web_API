@@ -12,11 +12,10 @@ namespace WeatherStationApi._06_Services
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
         
-        public RawReadingsDto FetchRawDayAStationReadings(int StationId)
+        public RawReadingsDto FetchRawDayAStationReadings(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime.Date == DateTime.Now.Date && x.StationId == StationId)
+                .FetchDayStation(StationId, Date)
                 .Select(y => new RawReadingDto(
                     y.ReadingDateTime,
                     y.AirPressure,
@@ -31,11 +30,10 @@ namespace WeatherStationApi._06_Services
             };
         }
         
-        public RawReadingsDto FetchRawWeekAStationReadings(int StationId)
+        public RawReadingsDto FetchRawWeekAStationReadings(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-7) && x.StationId == StationId)
+                .FetchWeekStation(StationId, Date)
                 .Select(y => new RawReadingDto(
                     y.ReadingDateTime,
                     y.AirPressure,
@@ -50,11 +48,10 @@ namespace WeatherStationApi._06_Services
             };
         }
         
-        public RawReadingsDto FetchRawMonthAStationReadings(int StationId)
+        public RawReadingsDto FetchRawMonthAStationReadings(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-31) && x.StationId == StationId)
+                .FetchMonthStation(StationId, Date)
                 .Select(y => new RawReadingDto(
                     y.ReadingDateTime,
                     y.AirPressure,
@@ -69,11 +66,10 @@ namespace WeatherStationApi._06_Services
             };
         }
         
-        public RawReadingsDto FetchRawYearAStationReadings(int StationId)
+        public RawReadingsDto FetchRawYearAStationReadings(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime.Date >= DateTime.Now.Date.AddDays(-356) && x.StationId == StationId)
+                .FetchYearStation(StationId, Date)
                 .Select(y => new RawReadingDto(
                     y.ReadingDateTime,
                     y.AirPressure,

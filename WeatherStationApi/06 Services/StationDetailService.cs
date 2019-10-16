@@ -12,15 +12,13 @@ namespace WeatherStationApi._06_Services
         private static readonly DataContextFactory _factory = new DataContextFactory();
         private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
 
-        public StationDetailDays FetchStationDetailDay(int stationID, DateTime Date)
+        public StationDetailDays FetchStationDetailDay(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.StationId == stationID)
-                .Where(x => x.ReadingDateTime >= Date.AddMinutes(-1440))
+                .FetchDayStation(StationId, Date)
                 .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month, y.ReadingDateTime.Day, y.ReadingDateTime.Hour})
                 .Select(y => new StationDetailDay(
-                    stationID,
+                    StationId,
                     y.Average(x => x.Temperature).ToString(),
                     y.Min(x => x.Temperature).ToString(),
                     y.Max(x => x.Temperature).ToString(),
@@ -68,14 +66,13 @@ namespace WeatherStationApi._06_Services
             };
         }
 
-        public StationDetailDays FetchStationDetailWeek(int stationID, DateTime Date)
+        public StationDetailDays FetchStationDetailWeek(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime >= Date.AddDays(-7) && x.StationId == stationID)
+                .FetchWeekStation(StationId, Date)
                 .GroupBy(y => y.ReadingDateTime.Date)
                 .Select(y => new StationDetailDay(
-                    stationID,
+                    StationId,
                     y.Average(x => x.Temperature).ToString(),
                     y.Min(x => x.Temperature).ToString(),
                     y.Max(x => x.Temperature).ToString(),
@@ -97,14 +94,13 @@ namespace WeatherStationApi._06_Services
             };
         }
 
-        public StationDetailDays FetchStationDetailMonth(int stationID, DateTime Date)
+        public StationDetailDays FetchStationDetailMonth(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime >= Date.AddDays(-31) && x.StationId == stationID)
+                .FetchMonthStation(StationId, Date)
                 .GroupBy(y => y.ReadingDateTime.Date)
                 .Select(y => new StationDetailDay(
-                    stationID,
+                    StationId,
                     y.Average(x => x.Temperature).ToString(),
                     y.Min(x => x.Temperature).ToString(),
                     y.Max(x => x.Temperature).ToString(),
@@ -126,14 +122,13 @@ namespace WeatherStationApi._06_Services
             };
         }
         
-        public StationDetailDays FetchStationDetailYear(int stationID, DateTime Date)
+        public StationDetailDays FetchStationDetailYear(int StationId, DateTime Date)
         {
             var readings =  _readingsRepository
-                .FetchAll()
-                .Where(x => x.ReadingDateTime >= Date.AddMonths(-12) && x.StationId == stationID)
+                .FetchYearStation(StationId, Date)
                 .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month})
                 .Select(y => new StationDetailDay(
-                    stationID,
+                    StationId,
                     y.Average(x => x.Temperature).ToString(),
                     y.Min(x => x.Temperature).ToString(),
                     y.Max(x => x.Temperature).ToString(),

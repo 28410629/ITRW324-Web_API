@@ -10,9 +10,9 @@ namespace WeatherStationApi._03_Dtos
             string TemperatureReadingAverage, 
             string TemperatureReadingMin,
             string TemperatureReadingMax,
-            string HumiditiyReadingAverage, 
-            string HumiditiyReadingMin, 
-            string HumiditiyReadingMax, 
+            string HumidityReadingAverage, 
+            string HumidityReadingMin, 
+            string HumidityReadingMax, 
             string AirPressureReadingAverage, 
             string AirPressureReadingMin, 
             string AirPressureReadingMax,
@@ -25,9 +25,9 @@ namespace WeatherStationApi._03_Dtos
             this.TemperatureReadingAverage = TemperatureReadingAverage;
             this.TemperatureReadingMin = TemperatureReadingMin;
             this.TemperatureReadingMax = TemperatureReadingMax;
-            this.HumiditiyReadingAverage = HumiditiyReadingAverage;
-            this.HumiditiyReadingMin = HumiditiyReadingMin;
-            this.HumiditiyReadingMax = HumiditiyReadingMax;
+            this.HumidityReadingAverage = HumidityReadingAverage;
+            this.HumidityReadingMin = HumidityReadingMin;
+            this.HumidityReadingMax = HumidityReadingMax;
             this.AirPressureReadingAverage = AirPressureReadingAverage;
             this.AirPressureReadingMin = AirPressureReadingMin;
             this.AirPressureReadingMax = AirPressureReadingMax;
@@ -41,9 +41,9 @@ namespace WeatherStationApi._03_Dtos
         public string TemperatureReadingAverage { get; set; }
         public string TemperatureReadingMin { get; set; }
         public string TemperatureReadingMax { get; set; }
-        public string HumiditiyReadingAverage { get; set; }
-        public string HumiditiyReadingMin { get; set; }
-        public string HumiditiyReadingMax { get; set; }
+        public string HumidityReadingAverage { get; set; }
+        public string HumidityReadingMin { get; set; }
+        public string HumidityReadingMax { get; set; }
         public string AirPressureReadingAverage { get; set; }
         public string AirPressureReadingMin { get; set; }
         public string AirPressureReadingMax { get; set; }
