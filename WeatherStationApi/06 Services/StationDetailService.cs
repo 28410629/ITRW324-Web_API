@@ -11,11 +11,12 @@ namespace WeatherStationApi._06_Services
     public class StationDetailService : IStationDetailService
     {
         private static readonly DataContextFactory _factory = new DataContextFactory();
-        private readonly IReadingsRepository _readingsRepository = new ReadingsRepository(_factory);
+        private readonly IReadingsRepository _ReadingsRepository = new ReadingsRepository(_factory);
 
+        // fetch aggregated sensor reading per station per day.
         public StationDetailDays FetchStationDetailDay(int StationId, DateTime Date)
         {
-            var readings =  _readingsRepository
+            var Readings =  _ReadingsRepository
                 .FetchDayStation(StationId, Date)
                 .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month, y.ReadingDateTime.Day, y.ReadingDateTime.Hour})
                 .Select(y => new StationDetailDay(
@@ -35,17 +36,18 @@ namespace WeatherStationApi._06_Services
                     new DateTime(y.Key.Year, y.Key.Month, y.Key.Day, y.Key.Hour, 0, 0))
                 ).ToList();
 
-            readings = AddZeroEntries<StationDetailDay>.AddHourZeroEntries(readings);
+            Readings = AddZeroEntries<StationDetailDay>.AddHourZeroEntries(Readings);
             
             return new StationDetailDays()
             {
-                StationDetails = readings
+                StationDetails = Readings
             };
         }
 
+        // fetch aggregated sensor reading per station per week.
         public StationDetailDays FetchStationDetailWeek(int StationId, DateTime Date)
         {
-            var readings =  _readingsRepository
+            var Readings =  _ReadingsRepository
                 .FetchWeekStation(StationId, Date)
                 .GroupBy(y => y.ReadingDateTime.Date)
                 .Select(y => new StationDetailDay(
@@ -65,17 +67,18 @@ namespace WeatherStationApi._06_Services
                     y.Key)
                 ).ToList();
             
-            readings = AddZeroEntries<StationDetailDay>.AddDayZeroEntries(readings);
+            Readings = AddZeroEntries<StationDetailDay>.AddDayZeroEntries(Readings);
 
             return new StationDetailDays()
             {
-                StationDetails = readings
+                StationDetails = Readings
             };
         }
 
+        // fetch aggregated sensor reading per station per month.
         public StationDetailDays FetchStationDetailMonth(int StationId, DateTime Date)
         {
-            var readings =  _readingsRepository
+            var Readings =  _ReadingsRepository
                 .FetchMonthStation(StationId, Date)
                 .GroupBy(y => y.ReadingDateTime.Date)
                 .Select(y => new StationDetailDay(
@@ -95,17 +98,18 @@ namespace WeatherStationApi._06_Services
                     y.Key)
                 ).ToList();
 
-            readings = AddZeroEntries<StationDetailDay>.AddDayZeroEntries(readings);
+            Readings = AddZeroEntries<StationDetailDay>.AddDayZeroEntries(Readings);
             
             return new StationDetailDays()
             {
-                StationDetails = readings
+                StationDetails = Readings
             };
         }
         
+        // fetch aggregated sensor reading per station per year.
         public StationDetailDays FetchStationDetailYear(int StationId, DateTime Date)
         {
-            var readings =  _readingsRepository
+            var Readings =  _ReadingsRepository
                 .FetchYearStation(StationId, Date)
                 .GroupBy(y => new {y.ReadingDateTime.Year, y.ReadingDateTime.Month})
                 .Select(y => new StationDetailDay(
@@ -125,11 +129,11 @@ namespace WeatherStationApi._06_Services
                     new DateTime(y.Key.Year, y.Key.Month, 1))
                 ).ToList();
             
-            readings = AddZeroEntries<StationDetailDay>.AddMonthZeroEntries(readings);
+            Readings = AddZeroEntries<StationDetailDay>.AddMonthZeroEntries(Readings);
 
             return new StationDetailDays()
             {
-                StationDetails = readings
+                StationDetails = Readings
             };
         }
     }
