@@ -50,17 +50,17 @@ namespace WeatherStationApi._06_Services
                 Console.WriteLine("[  ERR  ] Missing today's readings for " + StationId + " on four day forecast.");
             }
             // use a weighted moving average of three days to forecast four days.
-            double[] results = new double[4];
+            double[] Results = new double[4];
             double f1 = (Day1 + Day2*2f + Day3*3f)/6f;
-            results[0] = f1;
+            Results[0] = f1;
             double f2 = (Day2 + Day3*2f + f1*3f)/6f;
-            results[1] = f2;
+            Results[1] = f2;
             double f3 = (Day3 + f1*2f + f2*3f)/6f;
-            results[2] = f3;
+            Results[2] = f3;
             double f4 = (f1 + f2*2f + f3*3f)/6f;
-            results[3] = f4;
+            Results[3] = f4;
             Console.WriteLine("[  OK!  ] Forecast generated successfully for " + StationId + ".");
-            return results;
+            return Results;
         }
     }
 }
