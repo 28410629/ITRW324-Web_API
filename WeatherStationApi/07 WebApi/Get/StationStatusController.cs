@@ -15,6 +15,8 @@ namespace WeatherStationApi._07_WebApi.Get
         [HttpGet]
         public IActionResult FetchStationStatus(string StationIds, DateTime Date)
         {
+            Console.WriteLine("[  OK!  ] Received call for station status: StationIds = " + StationIds + " & Date = " + Date);
+            
             var answer = _service.FetchStationStatus(StationIds, Date);
 
             return new JsonResult(answer);

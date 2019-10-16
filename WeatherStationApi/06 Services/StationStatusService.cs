@@ -107,6 +107,8 @@ namespace WeatherStationApi._06_Services
                     Console.WriteLine(e.Source + " : " + e.Message);
                 }
                 
+                Console.WriteLine("[  OK!  ] Successfully got status for " + StationId + ", getting forecast.");
+                
                 double[] forecast = new ForecastService().FetchForecast(StationId, Date);
                 
                 newDto.ForecastDay1 = forecast[0].ToString();
