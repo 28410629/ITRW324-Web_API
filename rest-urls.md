@@ -1,34 +1,34 @@
-```
-/api
-    /delete
-    /get
-        /readings
-        /locationreadings
-            /location
-                /day?Province= &City= &Date=
-                /week?Province= &City= &Date=
-                /month?Province= &City= &Date=
-                /year?Province= &City= &Date=
-        /rawreadings
-            /station
-                /day?StationId= &Date=
-                /week?StationId= &Date=
-                /month?StationId= &Date=
-                /year?StationId= &Date=
-        /stationlist
-            /all
-        /stationstatus
-            /station?StationIds= &Date=
-        /stationdetail
-            /station
-                /day?StationId= &Date=
-                /week?StationId= &Date=
-                /month?StationId= &Date=
-                /year?StationId= &Date=
-        /forecast
-            /station
-                /4day?StationId= &Date=
-    /post
-        /reading
-    /put
-``` 
+```
+api
+|___delete
+|___get
+    |___readings
+    |___locationreadings
+    |___location
+        |___day?Province= &City= &Date=
+        |___week?Province= &City= &Date=
+        |___month?Province= &City= &Date=
+        |___year?Province= &City= &Date=
+    |___rawreadings
+        |___station
+            |___day?StationId= &Date=
+            |___week?StationId= &Date=
+            |___month?StationId= &Date=
+            |___year?StationId= &Date=
+    |___stationlist
+        |___all
+    |___stationstatus
+        |___station?StationIds= &Date=
+    |___stationdetail
+        |___station
+            |___day?StationId= &Date=
+            |___week?StationId= &Date=
+            |___month?StationId= &Date=
+            |___year?StationId= &Date=
+    |___forecast
+        |___station
+            |___4day?StationId= &Date=
+|___post
+    |___reading
+|___put
+``` 
