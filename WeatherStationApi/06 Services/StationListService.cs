@@ -19,7 +19,6 @@ namespace WeatherStationApi._06_Services
                 .OrderBy(y => y.StationId)
                 .Select(x => new StationListDto(
                     x.StationId,
-                    x.UserId,
                     x.LocationId,
                     x.NickName)
                 );
