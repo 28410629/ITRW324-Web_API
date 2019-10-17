@@ -7,8 +7,6 @@ namespace WeatherStationApi._02_Models
         // attributes
         public int StationId { get; set; }
         
-        public int UserId { get; set; }
-        
         public int LocationId { get; set; }
         
         public string NickName { get; set; }

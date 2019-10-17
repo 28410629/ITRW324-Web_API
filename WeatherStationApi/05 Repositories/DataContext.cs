@@ -83,8 +83,6 @@ namespace WeatherStationApi._05_Repositories
                 entity.ToTable("STATIONS");
                 
                 entity.HasKey(e => e.StationId);
-
-                entity.HasIndex(e => e.UserId);
                 
                 entity.HasIndex(e => e.LocationId);
 
