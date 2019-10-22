@@ -7,9 +7,9 @@ namespace WeatherStationApi._07_WebApi.Post
 {
     [Route("api/post/reading")]
     [ApiController]
-    public class StationSaveReadingController : ControllerBase
+    public class SaveReadingController : ControllerBase
     {
-        private readonly IStationSaveReadingService _service = new StationSaveReadingService();
+        private readonly ISaveReadingService _service = new SaveReadingService();
         
         // saves the reading sent from the a station.
         [HttpPost]
