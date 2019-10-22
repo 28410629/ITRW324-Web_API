@@ -20,7 +20,9 @@ namespace WeatherStationApi._06_Services
                 .Select(x => new StationListDto(
                     x.StationId,
                     x.LocationId,
-                    x.NickName)
+                    x.NickName,
+                    x.Location.City,
+                    x.Location.Province)
                 );
 
             return new StationListsDto
