@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using WeatherStationApi._04_Interfaces;
@@ -36,11 +37,7 @@ namespace WeatherStationApi._05_Repositories
         // remove an entity from a table.
         public void Remove(TEntity entity)
         {
-            if (Entities.Entry(entity).State == EntityState.Detached)
-            {
-                Entities.Set<TEntity>().Attach(entity);
-            }
-            Entities.Set<TEntity>().Remove(entity);
+            Entities.Entry(entity).State = EntityState.Deleted;
         }
 
         // gets all entities from a table.
