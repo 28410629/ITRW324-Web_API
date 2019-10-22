@@ -27,9 +27,9 @@ namespace WeatherStationApi._07_WebApi.Get
         // deletes station based on given information.
         [Route("delete")]
         [HttpGet]
-        public IActionResult DeleteStation(string Province, string City, int StationId, string Nickname)
+        public IActionResult DeleteStation(int StationId)
         {
-            var answer = _service.DeleteStation(Province, City, StationId, Nickname);
+            var answer = _service.DeleteStation(StationId);
 
             return new JsonResult(new ManageStationDto()
             {

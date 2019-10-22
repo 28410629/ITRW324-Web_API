@@ -95,7 +95,7 @@ namespace WeatherStationApi._06_Services
             }
         }
         
-        public bool DeleteStation(string Province, string City, int StationId, string Nickname)
+        public bool DeleteStation(int StationId)
         {
             try
             {
