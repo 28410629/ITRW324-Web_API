@@ -1,4 +1,4 @@
-# ITRW324 University Project
+# ITRW324 Semester Project
 Other repositories for project.
 * [ESP8266 Weather Station](https://github.com/coenraadhuman/WeatherStation_Unit)
 * [Angular Front-end](https://github.com/coenraadhuman/WeatherStation_Angular)
