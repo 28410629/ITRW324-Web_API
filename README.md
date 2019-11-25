@@ -1,4 +1,9 @@
-# WeatherStation_API
+# ITRW324 University Project
+Other repositories for project.
+* [ESP8266 Weather Station](https://github.com/coenraadhuman/WeatherStation_Unit)
+* [Angular Front-end](https://github.com/coenraadhuman/WeatherStation_Angular)
+
+## WeatherStation_API
 This can be a possible API for us to use with our project subject next semester.
 
 * I have added the basic layout for the project's backend. 
