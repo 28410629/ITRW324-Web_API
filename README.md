@@ -6,9 +6,6 @@ Other repositories for project.
 ## WeatherStation_API
 This can be a possible API for us to use with our project subject next semester.
 
-* I have added the basic layout for the project's backend. 
-* I will teach everything I've learned to you and I think this will get us the fastest up and running.
-
 Web API Details
 ----------------
 - .Net Core 2.2 
@@ -18,13 +15,6 @@ Web API Details
 coen@WeatherStationAPI:~$ mysql --version
 mysql  Ver 14.14 Distrib 5.7.27, for Linux (x86_64) using  EditLine wrapper
 ```
-
-WeatherUnderground Details
---------------------------
-* Email : 28410629@student.g.nwu.ac.za
-* Password : Olideadsykes1
-* API Key : 7a085e4a3b754ef4885e4a3b755ef490
-* API Documentation : [Online Documentation](https://docs.google.com/document/d/1eKCnKXI9xnoMGRRzOL1xPCBihNV2rOet08qpE_gArAY/edit)
 
 Reference Links
 ---------------
